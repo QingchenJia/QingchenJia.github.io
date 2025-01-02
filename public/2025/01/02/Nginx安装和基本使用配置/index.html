@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="QingchenJia">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://qingchenjia.github.io/2025/01/02/nginx安装和基本使用配置/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="一、引言Nginx是一个高性能的HTTP和反向代理web服务器，基于它能够帮助软件开发者进行前后端分离开发，然后利用反向代理的方式将配置应用，而且能够实现负载均衡，保证应用服务的健康运行。 二、操作步骤1.Linux系统安装Nginx常用的Nginx的安装方式有两种，一种是利用Linux系统的软件包安装命令进行安装，简单方便且不易出错，另一种是通过源码包进行安装，虽然繁琐但是服务性能更好。 这里以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx安装和基本使用配置">
+<meta property="og:url" content="https://qingchenjia.github.io/2025/01/02/Nginx%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、引言Nginx是一个高性能的HTTP和反向代理web服务器，基于它能够帮助软件开发者进行前后端分离开发，然后利用反向代理的方式将配置应用，而且能够实现负载均衡，保证应用服务的健康运行。 二、操作步骤1.Linux系统安装Nginx常用的Nginx的安装方式有两种，一种是利用Linux系统的软件包安装命令进行安装，简单方便且不易出错，另一种是通过源码包进行安装，虽然繁琐但是服务性能更好。 这里以">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://qingchenjia.github.io/2025/01/02/Nginx%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE/Nginx-GitHub.png">
+<meta property="og:image" content="https://qingchenjia.github.io/2025/01/02/Nginx%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE/Nginx-GitHub-Release.png">
+<meta property="og:image" content="https://qingchenjia.github.io/2025/01/02/Nginx%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE/Nginx-Web-Index-html.jpg">
+<meta property="article:published_time" content="2025-01-02T05:47:28.000Z">
+<meta property="article:modified_time" content="2025-01-02T07:20:22.760Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qingchenjia.github.io/2025/01/02/Nginx%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE/Nginx-GitHub.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Nginx安装和基本使用配置 | QingchenJia-Blog
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/build/css/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"qingchenjia.github.io","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background.webp","dark":"/images/background-dark.webp"},"title":"The Blog of QingchenJia","subtitle":{"text":["Welcome to this blog which belongs to QingchenJia!"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/QingchenJia","instagram":null,"zhihu":null,"twitter":null,"email":"879484952@qq.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.8.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                QingchenJia-Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">12</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Nginx安装和基本使用配置</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/headshot.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">QingchenJia</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-01-02 13:47:28</span>
+        <span class="mobile">2025-01-02 13:47:28</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-01-02 15:20:22</span>
+            <span class="mobile">2025-01-02 15:20:22</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h3 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h3><p><code>Nginx</code>是一个高性能的<code>HTTP</code>和反向代理<code>web</code>服务器，基于它能够帮助软件开发者进行前后端分离开发，然后利用反向代理的方式将配置应用，而且能够实现负载均衡，保证应用服务的健康运行。</p>
+<h3 id="二、操作步骤"><a href="#二、操作步骤" class="headerlink" title="二、操作步骤"></a>二、操作步骤</h3><h4 id="1-Linux系统安装Nginx"><a href="#1-Linux系统安装Nginx" class="headerlink" title="1.Linux系统安装Nginx"></a>1.Linux系统安装Nginx</h4><p>常用的<code>Nginx</code>的安装方式有两种，一种是利用<code>Linux</code>系统的软件包安装命令进行安装，简单方便且不易出错，另一种是通过源码包进行安装，虽然繁琐但是服务性能更好。</p>
+<p>这里以源码包安装为例进行演示。</p>
+<h5 id="1）下载Nginx的源码包"><a href="#1）下载Nginx的源码包" class="headerlink" title="1）下载Nginx的源码包"></a>1）下载Nginx的源码包</h5><p>通过访问<a target="_blank" rel="noopener" href="https://github.com/nginx/nginx"><code>Nginx</code>在<code>GitHub</code>上的仓库地址</a>，选择右上角处<code>Release</code>跳转对应网页。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/2025/01/02/Nginx%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE/Nginx-GitHub.png"></p>
+<p>下划至底部可下载文件部分，选择<code>Source Code</code>进行下载，格式选择<code>tar.gz</code>。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/2025/01/02/Nginx%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE/Nginx-GitHub-Release.png"></p>
+<h5 id="2）上传源码包至Linux系统"><a href="#2）上传源码包至Linux系统" class="headerlink" title="2）上传源码包至Linux系统"></a>2）上传源码包至Linux系统</h5><p>将下载好的源码包文件<code>nginx-release-1.27.3.tar.gz</code>通过<code>FinalShell</code>拖拽的方式上传至<code>CentOS7.6</code>系统中，习惯是传至目录<code>/usr/local/nginx</code>。</p>
+<p>若目录不存在，可自行创建对应目录。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> /usr/local/nginx</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="3）安装所需依赖库"><a href="#3）安装所需依赖库" class="headerlink" title="3）安装所需依赖库"></a>3）安装所需依赖库</h5><p>针对<code>Nginx</code>软件，对应需要安装<code>gcc</code>、<code>pcre</code>、<code>zlib</code>和<code>openssl</code>等环境。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc gcc-c++	<span class="comment"># nginx 编译时依赖 gcc 环境</span></span><br><span class="line">yum -y install pcre pcre-devel	<span class="comment"># 让 nginx 支持重写功能</span></span><br><span class="line">yum -y install zlib zlib-devel	<span class="comment"># zlib 库提供了很多压缩和解压缩的方式，nginx 使用 zlib 对 http 包内容进行 gzip 压缩</span></span><br><span class="line">yum -y install openssl openssl-devel	<span class="comment"># 安全套接字层密码库，用于通信加密</span></span><br></pre></td></tr></table></figure></div>
+
+<h5 id="4）解压Nginx源码包"><a href="#4）解压Nginx源码包" class="headerlink" title="4）解压Nginx源码包"></a>4）解压Nginx源码包</h5><p>进入<code>/usr/local/nginx</code>，解压源码包文件<code>nginx-release-1.27.3.tar.gz</code>。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/nginx</span><br><span class="line">tar -zxvf nginx-release-1.27.3.tar.gz</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="5）检查平台安装环境"><a href="#5）检查平台安装环境" class="headerlink" title="5）检查平台安装环境"></a>5）检查平台安装环境</h5><p>完成解压缩后，进入解压后的文件夹<code>nginx-release-1.27.3</code>，检查平台安装环境。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./auto/configure --prefix=/usr/local/nginx	<span class="comment"># --prefix=/usr/local/nginx  是 nginx 编译安装的目录（推荐），安装完后会在此目录下生成相关文件</span></span><br></pre></td></tr></table></figure></div>
+
+<p>如果前面的依赖库都安装成功后，执行<code>./auto/configure --prefix=/usr/local/nginx</code>命令会显示一些环境信息。如果出现错误，一般是依赖库没有安装完成，可按照错误提示信息进行所缺的依赖库安装。</p>
+<h5 id="6）编译源码并安装软件"><a href="#6）编译源码并安装软件" class="headerlink" title="6）编译源码并安装软件"></a>6）编译源码并安装软件</h5><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install	<span class="comment"># 编译 安装</span></span><br></pre></td></tr></table></figure></div>
+
+<h5 id="7）查看安装结果"><a href="#7）查看安装结果" class="headerlink" title="7）查看安装结果"></a>7）查看安装结果</h5><p>回到<code>/usr/local/nginx</code>目录，查看当前目录中的文件。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ll -h</span><br></pre></td></tr></table></figure></div>
+
+<p>若出现<code>conf</code>、<code>html</code>、<code>log</code>、<code>sbin</code>等目录即表示安装成功。</p>
+<h4 id="2-启动Nginx服务"><a href="#2-启动Nginx服务" class="headerlink" title="2.启动Nginx服务"></a>2.启动Nginx服务</h4><h5 id="1）配置全局环境变量"><a href="#1）配置全局环境变量" class="headerlink" title="1）配置全局环境变量"></a>1）配置全局环境变量</h5><p><code>Nginx</code>服务在未配置环境变量时，只能通过进入<code>/usr/local/nginx/sbin</code>目录中，执行二进制文件进行启动。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/nginx/sbin</span><br><span class="line">./nginx</span><br></pre></td></tr></table></figure></div>
+
+<p>不能使用简便的快捷命令进行启动，必须进入文件目录执行二进制文件或使用绝对路径执行文件，对操作带来极大不便。</p>
+<p>使用<code>vim</code>打开<code>/etc/profile</code>文件，将<code>/usr/local/nginx/sbin</code>添加到环境变量<code>PATH</code>中，然后重新加载。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile</span><br></pre></td></tr></table></figure></div>
+
+<p>在文件末尾插入下述内容，其中<code>:$PATH</code>代表在原先环境变量的基础上，拼接上了冒号之前的部分，保证了原环境变量依然有效。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PATH=/usr/local/nginx/sbin:$PATH</span><br></pre></td></tr></table></figure></div>
+
+<p>重新加载文件。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="2）检查配置文件正确性"><a href="#2）检查配置文件正确性" class="headerlink" title="2）检查配置文件正确性"></a>2）检查配置文件正确性</h5><p>在启动<code>Nginx</code>服务前，可以通过<code>-t</code>来检查其配置文件是否有配置错误。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -t</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="3）正式启动服务"><a href="#3）正式启动服务" class="headerlink" title="3）正式启动服务"></a>3）正式启动服务</h5><p>配置完全局环境变量后，可以直接使用<code>Nginx</code>及其包含参数的一系列命令。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx</span><br></pre></td></tr></table></figure></div>
+
+<p>启动成功后，默认监听端口为80，通过在浏览器上直接访问<code>Linux</code>系统主机<code>IP</code>，即可查看<code>Nginx</code>的默认<code>web</code>服务页面。</p>
+<p>若长时间加载不成功或访问失败，是因为<code>Linux</code>系统默认开启了防火墙，关闭即可访问。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure></div>
+
+<p>成功访问后显示如下页面。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/2025/01/02/Nginx%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE/Nginx-Web-Index-html.jpg"></p>
+<h5 id="4）关闭服务和重新加载服务"><a href="#4）关闭服务和重新加载服务" class="headerlink" title="4）关闭服务和重新加载服务"></a>4）关闭服务和重新加载服务</h5><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nginx -s stop	<span class="comment"># 关闭服务</span></span><br><span class="line">nginx -s reload	<span class="comment"># 重新加载服务，一般为配置文件修改以后执行</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="3-Nginx配置文件详解"><a href="#3-Nginx配置文件详解" class="headerlink" title="3.Nginx配置文件详解"></a>3.Nginx配置文件详解</h4><h5 id="1）配置文件整体浏览"><a href="#1）配置文件整体浏览" class="headerlink" title="1）配置文件整体浏览"></a>1）配置文件整体浏览</h5><p>进入<code>/usr/loacl/nginx/conf</code>目录中，通过<code>cat</code>命令查看<code>nginx.conf</code>文件的具体内容。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/nginx/conf</span><br><span class="line"><span class="built_in">cat</span> nginx.cong</span><br></pre></td></tr></table></figure></div>
+
+<p><code>nginx.conf</code>文件过滤注释配置部分后文件内容如下，默认<code>Nginx</code>服务只加载启动了如下配置。</p>
+<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">worker_processes  1;	# Nginx 在启动时会创建 1 个工作进程</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  1024;	# 每个工作进程允许的最大并发连接数是 1024</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;	# 根据请求的文件类型，设置正确的 Content-Type 响应头</span><br><span class="line">    default_type  application/octet-stream;	# 设置默认的 MIME 类型为 application/octet-stream（二进制文件）</span><br><span class="line">    sendfile        on;	# 启用 sendfile 选项，允许直接通过内核发送文件</span><br><span class="line">    keepalive_timeout  65;	# 设置 HTTP 长连接的超时时间为 65 秒</span><br><span class="line">    </span><br><span class="line">    server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line">        </span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html;</span><br><span class="line">            index  index.html index.htm;	# 指定默认的主页文件为 index.html 或 index.htm</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="2）反向代理配置"><a href="#2）反向代理配置" class="headerlink" title="2）反向代理配置"></a>2）反向代理配置</h5><p>客户端向<code>Nginx</code>服务器发送请求，部署<code>Nginx</code>的服务器将<code>localhost:80</code>接收到的请求，转发到<code>taget_url</code>由它进行处理响应返回值，经由<code>Nginx</code>服务转发回请求的客户端。</p>
+<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  localhost;</span><br><span class="line">        </span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass	target_url	# 反向代理配置，转发请求到指定服务</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="3）负载均衡配置"><a href="#3）负载均衡配置" class="headerlink" title="3）负载均衡配置"></a>3）负载均衡配置</h5><p>常用的负载均衡策略有轮询、<code>weight</code>、<code>ip_hash</code>、<code>least_conn</code>、<code>url_hash</code>和<code>fair</code>等策略方式，能够针对实际服务访问情况，有策略的处理分配服务访问，使得服务器集群中的每台服务器负载大致相同且能够正常承受。</p>
+<p>客户端向<code>Nginx</code>服务器发送请求，部署<code>Nginx</code>的服务器将<code>localhost:80</code>接收到的请求，通过负载均衡策略算法（默认策略为轮询方式）选择转发到<code>taget_server_urls</code>其中一台服务器，由它进行处理响应返回值，经由<code>Nginx</code>服务转发回请求的客户端。</p>
+<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">upstream target_server_urls &#123;	# 目标服务器集群，数量不一，此处以 3 台为例</span><br><span class="line">	server url1;</span><br><span class="line">	server url2;</span><br><span class="line">	server url3;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  localhost;</span><br><span class="line">        </span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass	target_server_urls	# 反向代理配置，转发请求到指定服务</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="三、写在最后"><a href="#三、写在最后" class="headerlink" title="三、写在最后"></a>三、写在最后</h3><p>前后端分离开发现已是主流开发方式，利用<code>Nginx</code>的反向代理方式，将分离的前后端应用关联起来，并且能够实现负载均衡，无疑是当前<code>Web</code>软件开发中不可或缺的一部分，无论前后端人员都有必要了解其特性。</p>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Nginx安装和基本使用配置</li>
+        <li><strong>Author:</strong> QingchenJia</li>
+        <li><strong>Created at
+                :</strong> 2025-01-02 13:47:28</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-01-02 15:20:22
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://qingchenjia.github.io/2025/01/02/Nginx安装和基本使用配置/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2024/12/29/CentOS7-6%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">CentOS7.6虚拟机基础配置</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          recaptchaV3Key: "wasd",
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">Nginx安装和基本使用配置</div>
+		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%BC%95%E8%A8%80"><span class="nav-text">一、引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4"><span class="nav-text">二、操作步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="nav-text">三、写在最后</span></a></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">QingchenJia</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        12 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.1</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+
+</main>
+
+
+
+<script src="/build/js/libs/Swup.min.js"></script>
+
+<script src="/build/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/build/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/build/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/build/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/build/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/build/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/build/js/utils.js" type="module"></script>
+
+<script src="/build/js/main.js" type="module"></script>
+
+<script src="/build/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/build/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/build/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/build/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/build/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/build/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/build/js/tools/runtime.js"></script>
+
+    
+<script src="/build/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/build/js/libs/Typed.min.js"></script>
+
+  
+<script src="/build/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/build/js/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/build/js/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/build/js/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/build/js/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/build/js/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/build/js/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>
