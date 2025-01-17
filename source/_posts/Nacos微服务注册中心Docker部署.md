@@ -128,7 +128,7 @@ MYSQL_SERVICE_DB_PARAM=characterEncoding=utf8&connectTimeout=1000&socketTimeout=
 docker run -d --name nacos --env-file ./custom.env -p 8848:8848 -p 9848:9848 -p 9849:9849 --restart=always nacos/nacos-server:<version_tag>
 ```
 
-`<version_tag>`为对应拉去的镜像版本标记。
+`<version_tag>`为对应拉取的镜像版本标记。
 
 #### 4.访问Nacos网页端
 

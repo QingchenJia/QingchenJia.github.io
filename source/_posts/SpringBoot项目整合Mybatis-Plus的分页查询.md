@@ -142,7 +142,7 @@ public class EmployeeController {
 
 ```java
 @Configuration
-public class MyBatisPlusConfig {
+public class MybatisPlusConfig {
     /**
      * 配置Mybatis-Plus拦截器
      * <p>
