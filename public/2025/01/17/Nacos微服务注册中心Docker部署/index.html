@@ -13,33 +13,27 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://qingchenjia.github.io/2024/11/02/公园下午茶拍照记/"/>
+    <link rel="canonical" href="https://qingchenjia.github.io/2025/01/17/nacos微服务注册中心docker部署/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="一、引言心心念念想要买的佳能CCD终于到货了，我们一直想要找个机会去拍几张照片试一试，看看效果怎么样。刚好星期五下午我们都有空，而且公园也不远，还可以顺便去吃她一直念叨的超级大蛋挞。 二、记录CCD相机开箱啦，好可爱的小包装。我是真的好喜欢这个相机，明明是她挑的，但好像我更喜欢一些啊哈哈哈。  没错，这就是超级大蛋挞！她还说蛋挞比她脸都大捏，真是太可爱了啊我宝宝哈哈哈。吃的时候我还老是挖不动底下的">
+        <meta name="description" content="一、引言使用SpringCloud框架进行分布式微服务项目开发时，必然离不开注册中心的环境搭建，其中Alibaba团队开发的Nacos作为国产化注册中心，已经完美集成到SpringCloud的规范下，成为了微服务项目的开发不二选择。 二、操作步骤1.安装Docker1）进入阿里云镜像网站访问docker-ce镜像网页，根据提示依次操作即可完成docker的安装。  2）完成必要准备工作安装必要的一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="公园下午茶拍照记">
-<meta property="og:url" content="https://qingchenjia.github.io/2024/11/02/%E5%85%AC%E5%9B%AD%E4%B8%8B%E5%8D%88%E8%8C%B6%E6%8B%8D%E7%85%A7%E8%AE%B0/index.html">
+<meta property="og:title" content="Nacos微服务注册中心Docker部署">
+<meta property="og:url" content="https://qingchenjia.github.io/2025/01/17/Nacos%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83Docker%E9%83%A8%E7%BD%B2/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一、引言心心念念想要买的佳能CCD终于到货了，我们一直想要找个机会去拍几张照片试一试，看看效果怎么样。刚好星期五下午我们都有空，而且公园也不远，还可以顺便去吃她一直念叨的超级大蛋挞。 二、记录CCD相机开箱啦，好可爱的小包装。我是真的好喜欢这个相机，明明是她挑的，但好像我更喜欢一些啊哈哈哈。  没错，这就是超级大蛋挞！她还说蛋挞比她脸都大捏，真是太可爱了啊我宝宝哈哈哈。吃的时候我还老是挖不动底下的">
+<meta property="og:description" content="一、引言使用SpringCloud框架进行分布式微服务项目开发时，必然离不开注册中心的环境搭建，其中Alibaba团队开发的Nacos作为国产化注册中心，已经完美集成到SpringCloud的规范下，成为了微服务项目的开发不二选择。 二、操作步骤1.安装Docker1）进入阿里云镜像网站访问docker-ce镜像网页，根据提示依次操作即可完成docker的安装。  2）完成必要准备工作安装必要的一">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://qingchenjia.github.io/2024/11/02/%E5%85%AC%E5%9B%AD%E4%B8%8B%E5%8D%88%E8%8C%B6%E6%8B%8D%E7%85%A7%E8%AE%B0/Ziyang-one.jpg">
-<meta property="og:image" content="https://qingchenjia.github.io/2024/11/02/%E5%85%AC%E5%9B%AD%E4%B8%8B%E5%8D%88%E8%8C%B6%E6%8B%8D%E7%85%A7%E8%AE%B0/Ziyang-two.jpg">
-<meta property="og:image" content="https://qingchenjia.github.io/2024/11/02/%E5%85%AC%E5%9B%AD%E4%B8%8B%E5%8D%88%E8%8C%B6%E6%8B%8D%E7%85%A7%E8%AE%B0/Ziyang-three.jpg">
-<meta property="og:image" content="https://qingchenjia.github.io/2024/11/02/%E5%85%AC%E5%9B%AD%E4%B8%8B%E5%8D%88%E8%8C%B6%E6%8B%8D%E7%85%A7%E8%AE%B0/Ziyang-four.jpg">
-<meta property="og:image" content="https://qingchenjia.github.io/2024/11/02/%E5%85%AC%E5%9B%AD%E4%B8%8B%E5%8D%88%E8%8C%B6%E6%8B%8D%E7%85%A7%E8%AE%B0/Ziyang-five.jpg">
-<meta property="og:image" content="https://qingchenjia.github.io/2024/11/02/%E5%85%AC%E5%9B%AD%E4%B8%8B%E5%8D%88%E8%8C%B6%E6%8B%8D%E7%85%A7%E8%AE%B0/Ziyang-six.jpg">
-<meta property="og:image" content="https://qingchenjia.github.io/2024/11/02/%E5%85%AC%E5%9B%AD%E4%B8%8B%E5%8D%88%E8%8C%B6%E6%8B%8D%E7%85%A7%E8%AE%B0/Ziyang-seven.jpg">
-<meta property="og:image" content="https://qingchenjia.github.io/2024/11/02/%E5%85%AC%E5%9B%AD%E4%B8%8B%E5%8D%88%E8%8C%B6%E6%8B%8D%E7%85%A7%E8%AE%B0/Ziyang-eight.jpg">
-<meta property="og:image" content="https://qingchenjia.github.io/2024/11/02/%E5%85%AC%E5%9B%AD%E4%B8%8B%E5%8D%88%E8%8C%B6%E6%8B%8D%E7%85%A7%E8%AE%B0/Ziyang-nine.jpg">
-<meta property="og:image" content="https://qingchenjia.github.io/2024/11/02/%E5%85%AC%E5%9B%AD%E4%B8%8B%E5%8D%88%E8%8C%B6%E6%8B%8D%E7%85%A7%E8%AE%B0/Ziyang-ten.jpg">
-<meta property="article:published_time" content="2024-11-02T05:35:24.000Z">
-<meta property="article:modified_time" content="2025-01-09T14:49:44.808Z">
+<meta property="og:image" content="https://qingchenjia.github.io/2025/01/17/Nacos%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83Docker%E9%83%A8%E7%BD%B2/AliyunMirror.png">
+<meta property="og:image" content="https://qingchenjia.github.io/2025/01/17/Nacos%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83Docker%E9%83%A8%E7%BD%B2/NacosGitHubRelease.png">
+<meta property="og:image" content="https://qingchenjia.github.io/2025/01/17/Nacos%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83Docker%E9%83%A8%E7%BD%B2/NacosPage-1.png">
+<meta property="og:image" content="https://qingchenjia.github.io/2025/01/17/Nacos%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83Docker%E9%83%A8%E7%BD%B2/NacosPage-2.png">
+<meta property="article:published_time" content="2025-01-17T13:29:51.000Z">
+<meta property="article:modified_time" content="2025-01-17T14:27:50.192Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://qingchenjia.github.io/2024/11/02/%E5%85%AC%E5%9B%AD%E4%B8%8B%E5%8D%88%E8%8C%B6%E6%8B%8D%E7%85%A7%E8%AE%B0/Ziyang-one.jpg">
+<meta name="twitter:image" content="https://qingchenjia.github.io/2025/01/17/Nacos%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83Docker%E9%83%A8%E7%BD%B2/AliyunMirror.png">
     
     
     <!--- Icon Part-->
@@ -51,7 +45,7 @@
     
     <title>
         
-            公园下午茶拍照记 | QingchenJia-Blog
+            Nacos微服务注册中心Docker部署 | QingchenJia-Blog
         
     </title>
 
@@ -240,7 +234,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">公园下午茶拍照记</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Nacos微服务注册中心Docker部署</h1>
 			</div>
 			
 		</div>
@@ -261,15 +255,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2024-11-02 13:35:24</span>
-        <span class="mobile">2024-11-02 13:35:24</span>
+        <span class="desktop">2025-01-17 21:29:51</span>
+        <span class="mobile">2025-01-17 21:29:51</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-01-09 22:49:44</span>
-            <span class="mobile">2025-01-09 22:49:44</span>
+            <span class="desktop">2025-01-17 22:27:50</span>
+            <span class="mobile">2025-01-17 22:27:50</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -296,28 +290,50 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<h3 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h3><p>心心念念想要买的佳能CCD终于到货了，我们一直想要找个机会去拍几张照片试一试，看看效果怎么样。刚好星期五下午我们都有空，而且公园也不远，还可以顺便去吃她一直念叨的超级大蛋挞。</p>
-<h3 id="二、记录"><a href="#二、记录" class="headerlink" title="二、记录"></a>二、记录</h3><p>CCD相机开箱啦，好可爱的小包装。我是真的好喜欢这个相机，明明是她挑的，但好像我更喜欢一些啊哈哈哈。</p>
-<p><img lazyload src="/images/loading.svg" data-src="/2024/11/02/%E5%85%AC%E5%9B%AD%E4%B8%8B%E5%8D%88%E8%8C%B6%E6%8B%8D%E7%85%A7%E8%AE%B0/Ziyang-one.jpg"></p>
-<p>没错，这就是超级大蛋挞！她还说蛋挞比她脸都大捏，真是太可爱了啊我宝宝哈哈哈。吃的时候我还老是挖不动底下的蛋挞皮，都是她拿勺子锯断了，然后挖给我吃的，真是太喜欢她了。</p>
-<p><img lazyload src="/images/loading.svg" data-src="/2024/11/02/%E5%85%AC%E5%9B%AD%E4%B8%8B%E5%8D%88%E8%8C%B6%E6%8B%8D%E7%85%A7%E8%AE%B0/Ziyang-two.jpg"></p>
-<p>第一张嘿嘿，之前都没有用过CCD拍照，但是拍的第一张就很好看，一次成功，拿给她看的时候，她可开心了。尤其是风吹动的这一缕头发，刚好擦着眼睛飘到面前，太有感觉了。</p>
-<p><img lazyload src="/images/loading.svg" data-src="/2024/11/02/%E5%85%AC%E5%9B%AD%E4%B8%8B%E5%8D%88%E8%8C%B6%E6%8B%8D%E7%85%A7%E8%AE%B0/Ziyang-three.jpg"></p>
-<p>刚好这个长廊看起来不错，从近到远，用来做背景再合适不过了。两只小手扣着背包链子，歪歪脑袋看着我，真的好可爱。</p>
-<p><img lazyload src="/images/loading.svg" data-src="/2024/11/02/%E5%85%AC%E5%9B%AD%E4%B8%8B%E5%8D%88%E8%8C%B6%E6%8B%8D%E7%85%A7%E8%AE%B0/Ziyang-four.jpg"></p>
-<p>捂着小脸，就露出一双的眼睛。虽然我也不懂妆造，但是眼眶周围红红的，非常的妩媚勾人啊。</p>
-<p><img lazyload src="/images/loading.svg" data-src="/2024/11/02/%E5%85%AC%E5%9B%AD%E4%B8%8B%E5%8D%88%E8%8C%B6%E6%8B%8D%E7%85%A7%E8%AE%B0/Ziyang-five.jpg"></p>
-<p>这张也很漂亮，背靠着湖水，歪着脑袋撩头发的样子真的太美了。</p>
-<p><img lazyload src="/images/loading.svg" data-src="/2024/11/02/%E5%85%AC%E5%9B%AD%E4%B8%8B%E5%8D%88%E8%8C%B6%E6%8B%8D%E7%85%A7%E8%AE%B0/Ziyang-six.jpg"></p>
-<p>终于到这张了，这天拍的所有照片里我最喜欢这张了。手上的小枫叶也是我捡给她的，头上的小发夹格外特别，好像真的有只小蝴蝶落到她发梢上一样。从相机里导出来以后好像看起来就不一样了，刚拍出来的时候在相机上，真的惊艳到我们俩了。</p>
-<p><img lazyload src="/images/loading.svg" data-src="/2024/11/02/%E5%85%AC%E5%9B%AD%E4%B8%8B%E5%8D%88%E8%8C%B6%E6%8B%8D%E7%85%A7%E8%AE%B0/Ziyang-seven.jpg"></p>
-<p>这个时候天已经差不多完全黑了，远处不记得是什么东西，还有几点光呢，给黑色的夜幕加了点点缀。</p>
-<p><img lazyload src="/images/loading.svg" data-src="/2024/11/02/%E5%85%AC%E5%9B%AD%E4%B8%8B%E5%8D%88%E8%8C%B6%E6%8B%8D%E7%85%A7%E8%AE%B0/Ziyang-eight.jpg"></p>
-<p>她拿着我的手机，自己跑到路灯底下去自拍了。小枫叶还捏在手里，就是舍不得丢掉呢。</p>
-<p><img lazyload src="/images/loading.svg" data-src="/2024/11/02/%E5%85%AC%E5%9B%AD%E4%B8%8B%E5%8D%88%E8%8C%B6%E6%8B%8D%E7%85%A7%E8%AE%B0/Ziyang-nine.jpg"></p>
-<p>你问我为什么要一直给她拍照片，那当然是因为<code>↓</code>啊。</p>
-<p><img lazyload src="/images/loading.svg" data-src="/2024/11/02/%E5%85%AC%E5%9B%AD%E4%B8%8B%E5%8D%88%E8%8C%B6%E6%8B%8D%E7%85%A7%E8%AE%B0/Ziyang-ten.jpg"></p>
-<h3 id="三、写在最后"><a href="#三、写在最后" class="headerlink" title="三、写在最后"></a>三、写在最后</h3><p>我该怎么拒绝这样好的人呢，哪怕路上出了点小差错，也会耐心好好安抚我。她发了一点小工资，也会毫无犹疑的拿出一半来陪我吃好吃的。我真的离不开她啊，我们会一直幸福吧。</p>
+			<h3 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h3><p>使用<code>SpringCloud</code>框架进行分布式微服务项目开发时，必然离不开注册中心的环境搭建，其中<code>Alibaba</code>团队开发的<code>Nacos</code>作为国产化注册中心，已经完美集成到<code>SpringCloud</code>的规范下，成为了微服务项目的开发不二选择。</p>
+<h3 id="二、操作步骤"><a href="#二、操作步骤" class="headerlink" title="二、操作步骤"></a>二、操作步骤</h3><h4 id="1-安装Docker"><a href="#1-安装Docker" class="headerlink" title="1.安装Docker"></a>1.安装Docker</h4><h5 id="1）进入阿里云镜像网站"><a href="#1）进入阿里云镜像网站" class="headerlink" title="1）进入阿里云镜像网站"></a>1）进入阿里云镜像网站</h5><p>访问<code>docker-ce</code>镜像网页，根据提示依次操作即可完成<code>docker</code>的安装。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/2025/01/17/Nacos%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83Docker%E9%83%A8%E7%BD%B2/AliyunMirror.png"></p>
+<h5 id="2）完成必要准备工作"><a href="#2）完成必要准备工作" class="headerlink" title="2）完成必要准备工作"></a>2）完成必要准备工作</h5><p>安装必要的一些系统工具。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils</span><br></pre></td></tr></table></figure></div>
+
+<p>添加软件源信息。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="3）进行docker的安装"><a href="#3）进行docker的安装" class="headerlink" title="3）进行docker的安装"></a>3）进行docker的安装</h5><p>安装并开启<code>docker</code>服务。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</span><br><span class="line">service docker start</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="4）配置可用docker镜像源"><a href="#4）配置可用docker镜像源" class="headerlink" title="4）配置可用docker镜像源"></a>4）配置可用docker镜像源</h5><p>创建<code>/etc/docker</code>目录。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /etc/docker</span><br></pre></td></tr></table></figure></div>
+
+<p>新建并编辑<code>daemon.json</code>文件，在文件中添加如下内容。</p>
+<div class="highlight-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line"> <span class="attr">&quot;registry-mirrors&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;https://docker.m.daocloud.io&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;https://noohub.ru&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;https://huecker.io&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;https://dockerhub.timeweb.cloud&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;https://docker.rainbond.cc&quot;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>重启<code>docker</code>服务，使可用镜像源配置生效。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="5）设置开机自启动"><a href="#5）设置开机自启动" class="headerlink" title="5）设置开机自启动"></a>5）设置开机自启动</h5><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> docker</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="2-使用Docker部署MySQL"><a href="#2-使用Docker部署MySQL" class="headerlink" title="2.使用Docker部署MySQL"></a>2.使用Docker部署MySQL</h4><h5 id="1）部署MySQL"><a href="#1）部署MySQL" class="headerlink" title="1）部署MySQL"></a>1）部署MySQL</h5><p>执行如下命令，<code>docker</code>将自动从镜像仓库中拉去最新版本的<code>MySQL</code>镜像，并部署容器。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mysql -e MYSQL_ROOT_PASSWORD=&lt;your_password&gt; -p 3306:3306 -d mysql</span><br></pre></td></tr></table></figure></div>
+
+<p>部署成功后的<code>MySQL</code>服务的<code>root</code>用户密码为<code>&lt;your_password&gt;</code>内容，容器中<code>3306</code>端口已映射至主机<code>3306</code>端口，可直接使用<code>Navicat</code>连接主机<code>IP</code>的<code>3306</code>端口操作<code>MySQL</code>数据库。</p>
+<h5 id="2）设置MySQL容器开机自启动"><a href="#2）设置MySQL容器开机自启动" class="headerlink" title="2）设置MySQL容器开机自启动"></a>2）设置MySQL容器开机自启动</h5><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker update --restart=always mysql</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="3-使用Docker部署Nacos"><a href="#3-使用Docker部署Nacos" class="headerlink" title="3.使用Docker部署Nacos"></a>3.使用Docker部署Nacos</h4><h5 id="1）上传Nacos环境配置文件"><a href="#1）上传Nacos环境配置文件" class="headerlink" title="1）上传Nacos环境配置文件"></a>1）上传Nacos环境配置文件</h5><p>通过<code>FinalShell</code>拖拽方式将<code>custom.env</code>上传至<code>Linux</code>虚拟机中，<code>custom.env</code>内容如下。</p>
+<div class="highlight-container" data-rel="Properties"><figure class="iseeu highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">PREFER_HOST_MODE</span>=<span class="string">hostname</span></span><br><span class="line"><span class="attr">MODE</span>=<span class="string">standalone	# 单机方式</span></span><br><span class="line"><span class="attr">SPRING_DATASOURCE_PLATFORM</span>=<span class="string">mysql	# 数据库管理系统名称</span></span><br><span class="line"><span class="attr">MYSQL_SERVICE_HOST</span>=<span class="string">192.168.19.130	# 虚拟机IP</span></span><br><span class="line"><span class="attr">MYSQL_SERVICE_DB_NAME</span>=<span class="string">nacos	# 数据库名称</span></span><br><span class="line"><span class="attr">MYSQL_SERVICE_PORT</span>=<span class="string">3306</span></span><br><span class="line"><span class="attr">MYSQL_SERVICE_USER</span>=<span class="string">root	# 用户名</span></span><br><span class="line"><span class="attr">MYSQL_SERVICE_PASSWORD</span>=<span class="string">jqc004118	# 密码</span></span><br><span class="line"><span class="attr">MYSQL_SERVICE_DB_PARAM</span>=<span class="string">characterEncoding=utf8&amp;connectTimeout=1000&amp;socketTimeout=3000&amp;autoReconnect=true&amp;useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Asia/Shanghai</span></span><br></pre></td></tr></table></figure></div>
+
+<h5 id="2）导入Nacos数据库"><a href="#2）导入Nacos数据库" class="headerlink" title="2）导入Nacos数据库"></a>2）导入Nacos数据库</h5><p>访问<code>Nacos</code>的<code>GitHub</code>仓库，进入<code>Release</code>中找到对应版本，下载对应压缩包，解压后获取<code>SQL</code>文件。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/2025/01/17/Nacos%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83Docker%E9%83%A8%E7%BD%B2/NacosGitHubRelease.png"></p>
+<p>通过<code>Navicat</code>连接至<code>MySQL</code>服务后，通过运行<code>SQL</code>文件操作，将<code>nacos</code>数据库文件一键导入。</p>
+<h5 id="3）部署Nacos"><a href="#3）部署Nacos" class="headerlink" title="3）部署Nacos"></a>3）部署Nacos</h5><p>执行<code>docker</code>命令，自动拉取并部署<code>nacos</code>容器，并且每次开机后会自启动。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name nacos --env-file ./custom.env -p 8848:8848 -p 9848:9848 -p 9849:9849 --restart=always nacos/nacos-server:&lt;version_tag&gt;</span><br></pre></td></tr></table></figure></div>
+
+<p><code>&lt;version_tag&gt;</code>为对应拉去的镜像版本标记。</p>
+<h4 id="4-访问Nacos网页端"><a href="#4-访问Nacos网页端" class="headerlink" title="4.访问Nacos网页端"></a>4.访问Nacos网页端</h4><p>打开浏览器访问<code>http:192.168.19.130:8848/nacos</code>，即可成功访问。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/2025/01/17/Nacos%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83Docker%E9%83%A8%E7%BD%B2/NacosPage-1.png"></p>
+<p>账号密码均为<code>nacos</code>，登陆成功后可以检索全部服务。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/2025/01/17/Nacos%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83Docker%E9%83%A8%E7%BD%B2/NacosPage-2.png"></p>
+<h3 id="三、写在最后"><a href="#三、写在最后" class="headerlink" title="三、写在最后"></a>三、写在最后</h3><p>通过<code>docker</code>部署<code>nacos</code>能够避免许多不必的环境适配操作，容器化的部署使得其便于管理，独立于宿主机器不受影响，极大的方便了开发者针对不同环境做出的部署行为。</p>
 
 		</div>
 
@@ -325,18 +341,18 @@
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> 公园下午茶拍照记</li>
+        <li><strong>Title:</strong> Nacos微服务注册中心Docker部署</li>
         <li><strong>Author:</strong> QingchenJia</li>
         <li><strong>Created at
-                :</strong> 2024-11-02 13:35:24</li>
+                :</strong> 2025-01-17 21:29:51</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-01-09 22:49:44
+                    :</strong> 2025-01-17 22:27:50
             </li>
         
         <li>
-            <strong>Link:</strong> https://qingchenjia.github.io/2024/11/02/公园下午茶拍照记/
+            <strong>Link:</strong> https://qingchenjia.github.io/2025/01/17/Nacos微服务注册中心Docker部署/
         </li>
         <li>
             <strong>
@@ -361,23 +377,11 @@
 		
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
-			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2024/11/14/%E5%82%8D%E6%99%9A%E7%9A%84%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%9B%AD/">
-					<span class="left arrow-icon flex justify-center items-center">
-						<i class="fa-solid fa-chevron-left"></i>
-					</span>
-					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">傍晚的中山公园</span>
-						<span class="post-nav-item">Prev posts</span>
-					</span>
-				</a>
-			</div>
-			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2024/10/25/SpringBoot%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AEhttps/">
+				<a class="next" rel="next" href="/2025/01/10/%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AB%99%EF%BC%9A%E6%9F%B3%E5%B7%9E%EF%BC%81/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">SpringBoot项目配置https</span>
+						<span class="post-nav-title-item">我们的第一站：柳州！</span>
 						<span class="post-nav-item">Next posts</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -441,8 +445,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">On this page</div>
-		<div class="page-title">公园下午茶拍照记</div>
-		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%BC%95%E8%A8%80"><span class="nav-text">一、引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%AE%B0%E5%BD%95"><span class="nav-text">二、记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="nav-text">三、写在最后</span></a></li></ol>
+		<div class="page-title">Nacos微服务注册中心Docker部署</div>
+		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%BC%95%E8%A8%80"><span class="nav-text">一、引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4"><span class="nav-text">二、操作步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="nav-text">三、写在最后</span></a></li></ol>
 
 	</div>
 </div>
