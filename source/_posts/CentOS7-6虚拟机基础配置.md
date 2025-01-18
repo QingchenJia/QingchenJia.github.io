@@ -30,10 +30,10 @@ tags:
 
 ##### 3）修改IP地址文件
 
-进入`CentOS7.6`操作系统，打开终端，进入`/etc/sysconfig`目录中，对`ifcfg-ens33`文件进行修改。
+进入`CentOS7.6`操作系统，打开终端，进入`/etc/sysconfig/network-scripts`目录中，对`ifcfg-ens33`文件进行修改。
 
 ```bash
-vim /etc/sysconfig/ifcfg-ens33
+vim /etc/sysconfig/network-scripts/ifcfg-ens33
 ```
 
 将`BOOTPROTO`项由`dhcp`修改为`static`，并在文件末尾增加`IPADDR`、`NETMASK`和`GATEWAY`三个配置项，其余不变。修改完成后，保存并退出文件。
