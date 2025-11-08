@@ -6,6 +6,116 @@
     <meta name="keywords" content="Hexo Theme Redefine">
     
     <meta name="author" content="QingchenJia">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set data attribute for CSS variables
+                root.setAttribute("data-theme", theme);
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes once DOM is ready
+            if (document.readyState !== "loading") {
+                document.body.classList.add(theme + "-mode");
+            } else {
+                document.addEventListener("DOMContentLoaded", () => {
+                    document.body.classList.add(theme + "-mode");
+                    document.body.classList.remove((theme === DARK ? LIGHT : DARK) + "-mode");
+                });
+            }
+        })();
+    </script>
+    
+    <!-- Critical CSS to prevent flash -->
+    <style>
+        :root[data-theme="dark"] {
+            --background-color: #202124;
+            --background-color-transparent: rgba(32, 33, 36, 0.6);
+            --second-background-color: #2d2e32;
+            --third-background-color: #34353a;
+            --third-background-color-transparent: rgba(32, 33, 36, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #ffffff;
+            --second-text-color: #eeeeee;
+            --third-text-color: #bebec6;
+            --fourth-text-color: #999999;
+            --default-text-color: #bebec6;
+            --invert-text-color: #373D3F;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(255, 255, 255, 0.08);
+            --shadow-color-2: rgba(255, 255, 255, 0.05);
+        }
+        
+        :root[data-theme="light"] {
+            --background-color: #fff;
+            --background-color-transparent: rgba(255, 255, 255, 0.6);
+            --second-background-color: #f8f8f8;
+            --third-background-color: #f2f2f2;
+            --third-background-color-transparent: rgba(241, 241, 241, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #16171a;
+            --second-text-color: #2f3037;
+            --third-text-color: #5e5e5e;
+            --fourth-text-color: #eeeeee;
+            --default-text-color: #373D3F;
+            --invert-text-color: #bebec6;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(0, 0, 0, 0.08);
+            --shadow-color-2: rgba(0, 0, 0, 0.05);
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+        
+        /* Apply body classes as soon as DOM is ready */
+        :root[data-theme="dark"] body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+    </style>
+    
     <!-- preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,6 +128,9 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
+    
+    
+        
         <meta name="description" content="一、引言进行密码学的课程设计时，任务要求需要利用SSL，建立基于用户与服务器之间的安全通信连接。而在一般的SpringBoot项目中，通常访问的是http开头的链接，所要做的就是将其变成https开头的安全协议。 二、实践1.使用keytool生成自签名证书keytool是下载JDK时一并安装完成的密钥工具，在环境变量配置正常时，能够直接通过终端执行其命令。 执行该命令在当前目录下生成一个名为CA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot项目配置https">
@@ -26,7 +139,7 @@
 <meta property="og:description" content="一、引言进行密码学的课程设计时，任务要求需要利用SSL，建立基于用户与服务器之间的安全通信连接。而在一般的SpringBoot项目中，通常访问的是http开头的链接，所要做的就是将其变成https开头的安全协议。 二、实践1.使用keytool生成自签名证书keytool是下载JDK时一并安装完成的密钥工具，在环境变量配置正常时，能够直接通过终端执行其命令。 执行该命令在当前目录下生成一个名为CA">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-10-25T12:38:29.000Z">
-<meta property="article:modified_time" content="2025-01-09T14:49:44.808Z">
+<meta property="article:modified_time" content="2025-11-08T11:02:53.047Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
     
@@ -57,7 +170,7 @@
 
     
         
-<link rel="stylesheet" href="/build/css/tailwind.css">
+<link rel="stylesheet" href="/css/build/tailwind.css">
 
     
 
@@ -77,7 +190,7 @@
 
     <script id="hexo-configurations">
     window.config = {"hostname":"qingchenjia.github.io","root":"/","language":"en"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background.webp","dark":"/images/background-dark.webp"},"title":"The Blog of QingchenJia","subtitle":{"text":["Welcome to this blog which belongs to QingchenJia!"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/QingchenJia","instagram":null,"zhihu":null,"twitter":null,"email":"879484952@qq.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.8.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/background.webp","dark":"/images/background-dark.webp"},"title":"The Blog of QingchenJia","subtitle":{"text":["Welcome to this blog which belongs to QingchenJia!"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/QingchenJia","instagram":null,"zhihu":null,"twitter":null,"email":"879484952@qq.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
     window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     window.data = {"masonry":false};
   </script>
@@ -99,7 +212,7 @@
     
     
     
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 8.0.0"></head>
 
 
 
@@ -206,7 +319,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">20</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">13</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -243,7 +356,7 @@
 				<div class="author flex items-center">
 					<span class="name text-default-text-color text-lg font-semibold">QingchenJia</span>
 					
-					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
 					
 				</div>
 				<div class="meta-info">
@@ -257,8 +370,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-01-09 22:49:44</span>
-            <span class="mobile">2025-01-09 22:49:44</span>
+            <span class="desktop">2025-11-08 19:02:53</span>
+            <span class="mobile">2025-11-08 19:02:53</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -288,13 +401,13 @@
 			<h3 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h3><p>进行密码学的课程设计时，任务要求需要利用<code>SSL</code>，建立基于用户与服务器之间的安全通信连接。而在一般的<code>SpringBoot</code>项目中，通常访问的是<code>http</code>开头的链接，所要做的就是将其变成<code>https</code>开头的安全协议。</p>
 <h3 id="二、实践"><a href="#二、实践" class="headerlink" title="二、实践"></a>二、实践</h3><h4 id="1-使用keytool生成自签名证书"><a href="#1-使用keytool生成自签名证书" class="headerlink" title="1.使用keytool生成自签名证书"></a>1.使用keytool生成自签名证书</h4><p><code>keytool</code>是下载<code>JDK</code>时一并安装完成的密钥工具，在环境变量配置正常时，能够直接通过终端执行其命令。</p>
 <p>执行该命令在当前目录下生成一个名为<code>CA.p12</code>的<code>PKCS12</code>格式密钥库文件，其中包含一个有效期为10年的自签名证书，使用<code>RSA</code>算法并设定密码为123456。</p>
-<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">keytool -genkey -alias CA -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore CA.p12 -storepass 123456 -validity 3650</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-genkey:生成一个密钥对（包括公钥和私钥）并创建一个自签名的证书</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-<span class="built_in">alias</span> CA:指定此密钥对的别名为`CA`</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-storetype PKCS12:指定密钥库的类型为`PKCS12`，这是一个标准的加密文件格式，兼容性广泛</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-keyalg RSA:指定使用`RSA`算法生成密钥对</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-keysize 2048:设置密钥的长度为2048位</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-keystore CA.p12:指定将密钥库文件保存为`CA.p12`</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-storepass 123456:设置密钥库的密码为123456</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-validity 3650:设置证书的有效期为3650天（大约10年）</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">keytool -genkey -alias CA -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore CA.p12 -storepass 123456 -validity 3650</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-genkey:生成一个密钥对（包括公钥和私钥）并创建一个自签名的证书</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-<span class="built_in">alias</span> CA:指定此密钥对的别名为`CA`</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-storetype PKCS12:指定密钥库的类型为`PKCS12`，这是一个标准的加密文件格式，兼容性广泛</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-keyalg RSA:指定使用`RSA`算法生成密钥对</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-keysize 2048:设置密钥的长度为2048位</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-keystore CA.p12:指定将密钥库文件保存为`CA.p12`</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-storepass 123456:设置密钥库的密码为123456</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-validity 3650:设置证书的有效期为3650天（大约10年）</span></span><br></pre></td></tr></table></figure></div>
 
 <p>执行此命令显示<code>CA.p12</code>文件中包含的证书和密钥的详细信息。</p>
-<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -list -v -keystore CA.p12</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -list -v -keystore CA.p12</span><br></pre></td></tr></table></figure></div>
 
 <h4 id="2-编辑SpringBoot项目配置"><a href="#2-编辑SpringBoot项目配置" class="headerlink" title="2.编辑SpringBoot项目配置"></a>2.编辑SpringBoot项目配置</h4><p>将<code>CA.p12</code>移动至项目中<code>src/main/resources</code>目录，并对<code>application.yml</code>进行如下配置。</p>
-<div class="highlight-container" data-rel="Yml"><figure class="iseeu highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">ssl:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span>	<span class="comment"># 启用SSL支持，使应用程序支持HTTPS访问</span></span><br><span class="line">    <span class="attr">key-store-type:</span> <span class="string">PKCS12</span>	<span class="comment"># 指定密钥库类型</span></span><br><span class="line">    <span class="attr">key-store:</span> <span class="string">classpath:CA.p12</span>	<span class="comment"># 指定密钥库文件位置</span></span><br><span class="line">    <span class="attr">key-store-password:</span> <span class="number">123456</span>	<span class="comment"># 密钥库的密码</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Yml"><figure class="iseeu highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">ssl:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span>	<span class="comment"># 启用SSL支持，使应用程序支持HTTPS访问</span></span><br><span class="line">    <span class="attr">key-store-type:</span> <span class="string">PKCS12</span>	<span class="comment"># 指定密钥库类型</span></span><br><span class="line">    <span class="attr">key-store:</span> <span class="string">classpath:CA.p12</span>	<span class="comment"># 指定密钥库文件位置</span></span><br><span class="line">    <span class="attr">key-store-password:</span> <span class="number">123456</span>	<span class="comment"># 密钥库的密码</span></span><br></pre></td></tr></table></figure></div>
 
 <h4 id="3-启动项目访问https链接"><a href="#3-启动项目访问https链接" class="headerlink" title="3.启动项目访问https链接"></a>3.启动项目访问https链接</h4><p>此时原<code>http</code>链接已无法正常访问，将其更改为<code>https</code>重新访问。浏览器会提醒，当前访问页面不安全，并建议我们访问安全站点，这是因为使用的是自签名证书，没有受到根证书的认证。无需理会，选择高级，仍然访问此链接即可正常使用。</p>
 <h3 id="三、写在最后"><a href="#三、写在最后" class="headerlink" title="三、写在最后"></a>三、写在最后</h3><p>对于密码学的相关知识过于浅薄，因而只能选择最简单易懂的配置方式，能够达到目的即是好的。</p>
@@ -312,7 +425,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-01-09 22:49:44
+                    :</strong> 2025-11-08 19:02:53
             </li>
         
         <li>
@@ -342,12 +455,12 @@
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
 			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2024/11/02/%E5%85%AC%E5%9B%AD%E4%B8%8B%E5%8D%88%E8%8C%B6%E6%8B%8D%E7%85%A7%E8%AE%B0/">
+				<a class="prev" rel="prev" href="/2024/11/16/SpringBoot%E9%A1%B9%E7%9B%AE%E6%95%B4%E5%90%88Mybatis-Plus%E7%9A%84%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/">
 					<span class="left arrow-icon flex justify-center items-center">
 						<i class="fa-solid fa-chevron-left"></i>
 					</span>
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">公园下午茶拍照记</span>
+						<span class="post-nav-title-item truncate max-w-48">SpringBoot项目整合Mybatis-Plus的分页查询</span>
 						<span class="post-nav-item">Prev posts</span>
 					</span>
 				</a>
@@ -357,7 +470,7 @@
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
 				<a class="next" rel="next" href="/2024/10/21/%E5%9F%BA%E4%BA%8EHexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">基于Hexo框架搭建博客</span>
+						<span class="post-nav-title-item truncate max-w-48">基于Hexo框架搭建博客</span>
 						<span class="post-nav-item">Next posts</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -389,13 +502,12 @@
         init({
           el: '#waline',
           serverURL: 'https://example.example.com',
-          lang: 'zh-CN',
           dark: 'body[class~="dark-mode"]',
           reaction: false,
           requiredMeta: ['nick', 'mail'],
           emoji: [],
-          recaptchaV3Key: "wasd",
-          
+                    lang: 'zh-CN',
+          recaptchaV3Key: 'wasd',
         });
       }
 
@@ -449,7 +561,7 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        20 posts in total
+                        13 posts in total
                     </span>
                     
                 </p>
@@ -474,7 +586,7 @@
         
         <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
             <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
-            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.1</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
         </div>
         
         
@@ -578,17 +690,17 @@
 
 
 
-<script src="/build/js/libs/Swup.min.js"></script>
+<script src="/js/build/libs/Swup.min.js"></script>
 
-<script src="/build/js/libs/SwupSlideTheme.min.js"></script>
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
 
-<script src="/build/js/libs/SwupScriptsPlugin.min.js"></script>
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
 
-<script src="/build/js/libs/SwupProgressPlugin.min.js"></script>
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
 
-<script src="/build/js/libs/SwupScrollPlugin.min.js"></script>
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
 
-<script src="/build/js/libs/SwupPreloadPlugin.min.js"></script>
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
 
 <script>
     const swup = new Swup({
@@ -613,41 +725,41 @@
 
 
 	
-<script src="/build/js/tools/imageViewer.js" type="module"></script>
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
 
-<script src="/build/js/utils.js" type="module"></script>
+<script src="/js/build/utils.js" type="module"></script>
 
-<script src="/build/js/main.js" type="module"></script>
+<script src="/js/build/main.js" type="module"></script>
 
-<script src="/build/js/layouts/navbarShrink.js" type="module"></script>
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
 
-<script src="/build/js/tools/scrollTopBottom.js" type="module"></script>
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
 
-<script src="/build/js/tools/lightDarkSwitch.js" type="module"></script>
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
 
-<script src="/build/js/layouts/categoryList.js" type="module"></script>
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
 
-
-
-
-
-    
-<script src="/build/js/tools/codeBlock.js" type="module"></script>
 
 
 
 
     
-<script src="/build/js/layouts/lazyload.js" type="module"></script>
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
 
 
 
 
     
-<script src="/build/js/tools/runtime.js"></script>
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
 
     
-<script src="/build/js/libs/odometer.min.js"></script>
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
 
     
 <link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
@@ -656,10 +768,10 @@
 
 
   
-<script src="/build/js/libs/Typed.min.js"></script>
+<script src="/js/build/libs/Typed.min.js"></script>
 
   
-<script src="/build/js/plugins/typed.js" type="module"></script>
+<script src="/js/build/plugins/typed.js" type="module"></script>
 
 
 
@@ -669,26 +781,26 @@
 
 
     
-<script src="/build/js/libs/anime.min.js"></script>
+<script src="/js/build/libs/anime.min.js"></script>
 
 
 
 
 
     
-<script src="/build/js/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
 
-<script src="/build/js/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
 
-<script src="/build/js/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
-
-
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
 
 
-<script src="/build/js/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
 
 
-<script src="/build/js/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
 
 
 
