@@ -36,7 +36,7 @@ docker run -e RABBITMQ_DEFAULT_USER=rabbitmq -e RABBITMQ_DEFAULT_PASS=rabbitmq -
 
 ##### 3）访问控制台
 
-通过浏览器访问`http192.168.19.130:15672`即可进入`RabbitMQ`控制台，成功登陆后进入管理界面。
+通过浏览器访问`http://192.168.19.130:15672`即可进入`RabbitMQ`控制台，成功登陆后进入管理界面。
 
 ![](../RabbitMQ安装和进阶使用/RabbitMQ-WebPage.png)
 

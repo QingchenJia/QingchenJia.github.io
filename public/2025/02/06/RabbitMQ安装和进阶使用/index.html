@@ -142,7 +142,7 @@
 <meta property="og:image" content="https://qingchenjia.github.io/2025/02/06/RabbitMQ%E5%AE%89%E8%A3%85%E5%92%8C%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8/RabbitMQ-WebPage.png">
 <meta property="og:image" content="https://qingchenjia.github.io/2025/02/06/RabbitMQ%E5%AE%89%E8%A3%85%E5%92%8C%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8/DelayMessage-Plugin.png">
 <meta property="article:published_time" content="2025-02-06T05:53:53.000Z">
-<meta property="article:modified_time" content="2025-11-08T11:02:53.038Z">
+<meta property="article:modified_time" content="2025-11-11T13:14:32.263Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://qingchenjia.github.io/2025/02/06/RabbitMQ%E5%AE%89%E8%A3%85%E5%92%8C%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8/RabbitMQ-DockerImage.png">
@@ -374,8 +374,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-11-08 19:02:53</span>
-            <span class="mobile">2025-11-08 19:02:53</span>
+            <span class="desktop">2025-11-11 21:14:32</span>
+            <span class="mobile">2025-11-11 21:14:32</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -412,7 +412,7 @@
 <div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -e RABBITMQ_DEFAULT_USER=rabbitmq -e RABBITMQ_DEFAULT_PASS=rabbitmq -v rabbitmq:/plugins --name rabbitmq -p 15672:15672 -p 5672:5672 -d rabbitmq</span><br></pre></td></tr></table></figure></div>
 
 <p><code>RABBITMQ_DEFAULT_USER</code>和<code>RABBITMQ_DEFAULT_PASS</code>对应<code>RabbitMQ</code>控制台的账号与密码。</p>
-<h5 id="3）访问控制台"><a href="#3）访问控制台" class="headerlink" title="3）访问控制台"></a>3）访问控制台</h5><p>通过浏览器访问<code>http192.168.19.130:15672</code>即可进入<code>RabbitMQ</code>控制台，成功登陆后进入管理界面。</p>
+<h5 id="3）访问控制台"><a href="#3）访问控制台" class="headerlink" title="3）访问控制台"></a>3）访问控制台</h5><p>通过浏览器访问<code>http://192.168.19.130:15672</code>即可进入<code>RabbitMQ</code>控制台，成功登陆后进入管理界面。</p>
 <p><img lazyload src="/images/loading.svg" data-src="/2025/02/06/RabbitMQ%E5%AE%89%E8%A3%85%E5%92%8C%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8/RabbitMQ-WebPage.png"></p>
 <p>进入<code>Admin</code>菜单栏可创建新用户，针对不同项目可对应创建不同用户与虚拟机。其他用户对各自的虚拟机具有足够的开发权限，可对通过<code>Exchanges</code>和<code>Queues</code>菜单栏针对消息交换机和消息队列进行业务配置。</p>
 <h4 id="2-与Spring及其子框架集成"><a href="#2-与Spring及其子框架集成" class="headerlink" title="2.与Spring及其子框架集成"></a>2.与Spring及其子框架集成</h4><h5 id="1）引入AMQP依赖"><a href="#1）引入AMQP依赖" class="headerlink" title="1）引入AMQP依赖"></a>1）引入AMQP依赖</h5><p>基于<code>RabbitMQ</code>采用<code>AMQP</code>协议的特性，<code>Spring</code>提供了<code>SpringAMQP</code>作为消息收发的模板工具。通过<code>Maven</code>导入相关依赖即可快速使用。</p>
@@ -492,7 +492,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-11-08 19:02:53
+                    :</strong> 2025-11-11 21:14:32
             </li>
         
         <li>
