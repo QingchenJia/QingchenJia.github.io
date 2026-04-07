@@ -25,7 +25,7 @@ defaults:
     # Site logo
     logo:
     # Site avatar
-    avatar: /images/headshot.jpg
+    avatar: /assets/images/headshot.jpg
 # IMAGE CONFIGURATION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
 
 # COLORS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> start
@@ -114,8 +114,8 @@ home_banner:
     style: fixed # static or fixed
     # Home banner image
     image:
-        light: /images/background.webp # light mode
-        dark: /images/background-dark.webp # dark mode
+        light: /assets/images/background.webp # light mode
+        dark: /assets/images/background-dark.webp # dark mode
     # Home banner title
     title: The Blog of QingchenJia
     # Home banner subtitle
