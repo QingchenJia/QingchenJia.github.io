@@ -3,7 +3,11 @@ title: SpringBoot项目整合Mybatis-Plus的分页查询
 typora-root-url: SpringBoot项目整合Mybatis-Plus的分页查询
 date: 2024-11-16 17:57:39
 tags:
+    - SpringBoot
+    - MyBatis-Plus
+    - 分页
 ---
+
 ### 一、引言
 
 在基于`SpringBoot`框架进行`Web`项目的后端开发时，关于数据层通常离不开`Mybatis`框架，它能够通过注解或`xml`配置文件的方式，帮助开发者完成与数据库的交互，相较于传统的`JDBC`模式，提升了极大的效率。然而依然存在大量简单`SQL`语句需要手写的的问题，不得不浪费时间在单表的基础操作上。针对于此，`Mybatis-Plus`就成了不二之选，不仅兼容`Mybatis`的基础方法，还对简单`SQL`进行了封装，并提供了分页查询，公共字段自动插入，逻辑删除等进阶操作。
@@ -96,8 +100,8 @@ public class Employee implements Serializable {
 
 ```yml
 mybatis-plus:
-  configuration:
-    map-underscore-to-camel-case: true
+    configuration:
+        map-underscore-to-camel-case: true
 ```
 
 除了配置文件以外，还可以在类名上使用`@Table("${tb_name}")`注解将当前实体类

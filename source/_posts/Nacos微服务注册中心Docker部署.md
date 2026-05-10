@@ -3,7 +3,11 @@ title: Nacos微服务注册中心Docker部署
 typora-root-url: Nacos微服务注册中心Docker部署
 date: 2025-01-17 21:29:51
 tags:
+    - Nacos
+    - Docker
+    - 微服务
 ---
+
 ### 一、引言
 
 使用`SpringCloud`框架进行分布式微服务项目开发时，必然离不开注册中心的环境搭建，其中`Alibaba`团队开发的`Nacos`作为国产化注册中心，已经完美集成到`SpringCloud`的规范下，成为了微服务项目的开发不二选择。
@@ -53,13 +57,13 @@ mkdir -p /etc/docker
 
 ```json
 {
- "registry-mirrors": [
-    "https://docker.m.daocloud.io",
-    "https://noohub.ru",
-    "https://huecker.io",
-    "https://dockerhub.timeweb.cloud",
-    "https://docker.rainbond.cc"
-  ]
+    "registry-mirrors": [
+        "https://docker.m.daocloud.io",
+        "https://noohub.ru",
+        "https://huecker.io",
+        "https://dockerhub.timeweb.cloud",
+        "https://docker.rainbond.cc"
+    ]
 }
 ```
 

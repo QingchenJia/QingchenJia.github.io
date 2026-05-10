@@ -3,7 +3,11 @@ title: Nginx安装和基本使用配置
 typora-root-url: Nginx安装和基本使用配置
 date: 2025-01-02 13:47:28
 tags:
+    - Nginx
+    - 反向代理
+    - 服务器
 ---
+
 ### 一、引言
 
 `Nginx`是一个高性能的`HTTP`和反向代理`web`服务器，基于它能够帮助软件开发者进行前后端分离开发，然后利用反向代理的方式将配置应用，而且能够实现负载均衡，保证应用服务的健康运行。
@@ -173,11 +177,11 @@ http {
     default_type  application/octet-stream;	# 设置默认的 MIME 类型为 application/octet-stream（二进制文件）
     sendfile        on;	# 启用 sendfile 选项，允许直接通过内核发送文件
     keepalive_timeout  65;	# 设置 HTTP 长连接的超时时间为 65 秒
-    
+
     server {
         listen       80;
         server_name  localhost;
-        
+
         location / {
             root   html;
             index  index.html index.htm;	# 指定默认的主页文件为 index.html 或 index.htm
@@ -193,7 +197,7 @@ http {
 server {
     listen       80;
     server_name  localhost;
-        
+
     location / {
         proxy_pass	target_url	# 反向代理配置，转发请求到指定服务
     }
@@ -216,7 +220,7 @@ upstream target_server_urls {	# 目标服务器集群，数量不一，此处以
 server {
     listen       80;
     server_name  localhost;
-        
+
     location / {
         proxy_pass	target_server_urls	# 反向代理配置，转发请求到指定服务
     }

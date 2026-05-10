@@ -3,6 +3,9 @@ title: JWT令牌实现登录状态认证
 typora-root-url: JWT令牌实现登录状态认证
 date: 2025-03-03 23:08:17
 tags:
+    - JWT
+    - SpringBoot
+    - 登录认证
 ---
 
 ### 一、引言
@@ -71,7 +74,7 @@ public class JwtUtil {
                 // 将令牌构建为紧凑的字符串形式并返回
                 .compact();
     }
-}    
+}
 ```
 
 `Header`通常不需要手动填充，`JWT`库会默认设置常见的字段，如`alg`和`typ`。`Payload`部分需由手动填充，`subject`和`claim`等字段均属于`Payload`部分。`Signature`可自定义密钥`key`和签名算法，通常密钥`key`应和签名算法匹配。
@@ -115,7 +118,7 @@ public class JwtUtil {
         // 返回解析后的claims信息
         return claims;
     }
-}    
+}
 ```
 
 获取`token`并解析时，若`token`已过期则抛出过期异常，其余所有异常均抛出`token`无效异常。将解析成功的`Claims`参数返回，由用户登录拦截器接收并读取登录用户的信息。

@@ -3,7 +3,11 @@ title: SpringBoot3集成Knife4j生成API文档
 typora-root-url: SpringBoot3集成Knife4j生成API文档
 date: 2024-11-25 18:51:57
 tags:
+    - SpringBoot
+    - Knife4j
+    - API文档
 ---
+
 ### 一、引言
 
 `Knife4j`是基于`Swagger`的`API`测试文档生成框架，能够扫描`SpringMVC`框架下的`Controller`包中的类文件，并根据`API`接口生成对应的文档，支持在线调试和离线导出，极大的简化了前后端分离开发时，后端工作人员的调试和文档编写工作。
@@ -13,13 +17,13 @@ tags:
 #### 1.Knife4j依赖导入
 
 视`SpringBoot`版本而定，所需要导入的`Knife4j`依赖版本应随之变化。下表给出了不同的`SpringBoot`版本所对应的不同的`Knife4j`的依赖版本，具体详情可见`Knife4j`官方文档中[关于`SpringBoot`版本兼容性部分](https://doc.xiaominfo.com/docs/quick-start/start-knife4j-version#2spring-boot%E7%89%88%E6%9C%AC%E5%85%BC%E5%AE%B9%E6%80%A7)。
-| Spring Boot版本 | Knife4j Swagger2规范  | Knife4j OpenAPI3规范 |
+| Spring Boot版本 | Knife4j Swagger2规范 | Knife4j OpenAPI3规范 |
 | :---------------: | :---------------------: | :--------------------: |
-| 1.5.x~2.0.0     | <Knife4j 2.0.0        | >=Knife4j 4.0.0      |
-| 2.0~2.2         | Knife4j 2.0.0 ~ 2.0.6 | >=Knife4j 4.0.0      |
-| 2.2.x~2.4.0     | Knife4j 2.0.6 ~ 2.0.9 | >=Knife4j 4.0.0      |
-| 2.4.0~2.7.x     | >=Knife4j 4.0.0       | >=Knife4j 4.0.0      |
-| >= 3.0          | >=Knife4j 4.0.0       | >=Knife4j 4.0.0      |
+| 1.5.x~2.0.0 | <Knife4j 2.0.0 | >=Knife4j 4.0.0 |
+| 2.0~2.2 | Knife4j 2.0.0 ~ 2.0.6 | >=Knife4j 4.0.0 |
+| 2.2.x~2.4.0 | Knife4j 2.0.6 ~ 2.0.9 | >=Knife4j 4.0.0 |
+| 2.4.0~2.7.x | >=Knife4j 4.0.0 | >=Knife4j 4.0.0 |
+| >= 3.0 | >=Knife4j 4.0.0 | >=Knife4j 4.0.0 |
 
 以`SpringBoot3.3.5`版本为例，在导入依赖时应选择`4.0.0`及以上版本。
 
@@ -38,21 +42,21 @@ tags:
 ```yml
 # springdoc-openapi项目配置
 springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
-    tags-sorter: alpha
-    operations-sorter: alpha
-  api-docs:
-    path: /v3/api-docs
-  group-configs:
-    - group: 'default'
-      paths-to-match: '/**'
-      packages-to-scan: ${package}
+    swagger-ui:
+        path: /swagger-ui.html
+        tags-sorter: alpha
+        operations-sorter: alpha
+    api-docs:
+        path: /v3/api-docs
+    group-configs:
+        - group: "default"
+          paths-to-match: "/**"
+          packages-to-scan: ${package}
 # knife4j的增强配置，不需要增强可以不配
 knife4j:
-  enable: true
-  setting:
-    language: zh_cn
+    enable: true
+    setting:
+        language: zh_cn
 ```
 
 #### 3.新建Knife4j配置类
@@ -108,7 +112,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         registry.addResourceHandler("/favicon.ico")
                 .addResourceLocations("classpath:/META-INF/resources/");
     }
-}    
+}
 ```
 
 #### 5.访问API文档Url
@@ -182,7 +186,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         // 将自定义的消息转换器添加到列表的最前面，确保它优先被使用
         converters.add(converters.size() - 1, messageConverter);
     }
-}      
+}
 ```
 
 ### 四、写在最后

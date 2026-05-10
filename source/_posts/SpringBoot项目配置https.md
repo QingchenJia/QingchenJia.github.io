@@ -3,7 +3,11 @@ title: SpringBoot项目配置https
 typora-root-url: SpringBoot项目配置https
 date: 2024-10-25 20:38:29
 tags:
+    - SpringBoot
+    - HTTPS
+    - SSL
 ---
+
 ### 一、引言
 
 进行密码学的课程设计时，任务要求需要利用`SSL`，建立基于用户与服务器之间的安全通信连接。而在一般的`SpringBoot`项目中，通常访问的是`http`开头的链接，所要做的就是将其变成`https`开头的安全协议。
@@ -29,7 +33,8 @@ keytool -genkey -alias CA -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore 
 ```
 
 执行此命令显示`CA.p12`文件中包含的证书和密钥的详细信息。
-``` shell
+
+```shell
 keytool -list -v -keystore CA.p12
 ```
 
@@ -39,11 +44,11 @@ keytool -list -v -keystore CA.p12
 
 ```yml
 server:
-  ssl:
-    enabled: true	# 启用SSL支持，使应用程序支持HTTPS访问
-    key-store-type: PKCS12	# 指定密钥库类型
-    key-store: classpath:CA.p12	# 指定密钥库文件位置
-    key-store-password: 123456	# 密钥库的密码
+    ssl:
+        enabled: true # 启用SSL支持，使应用程序支持HTTPS访问
+        key-store-type: PKCS12 # 指定密钥库类型
+        key-store: classpath:CA.p12 # 指定密钥库文件位置
+        key-store-password: 123456 # 密钥库的密码
 ```
 
 #### 3.启动项目访问https链接

@@ -3,7 +3,11 @@ title: RabbitMQ安装和进阶使用
 typora-root-url: RabbitMQ安装和进阶使用
 date: 2025-02-06 13:53:53
 tags:
+    - RabbitMQ
+    - 消息队列
+    - SpringBoot
 ---
+
 ### 一、引言
 
 针对分布式微服务项目中，为实现各个微服务模块功能的高内聚，避免非必要功能的耦合，应采取异步调用的方式实现其他功能。因此，消息队列成为首选技术，对于并发量一般的项目，`RabbitMQ`能够优秀胜任其工作。
@@ -63,12 +67,12 @@ docker run -e RABBITMQ_DEFAULT_USER=rabbitmq -e RABBITMQ_DEFAULT_PASS=rabbitmq -
 
 ```yml
 spring:
-  rabbitmq:
-    host: 192.168.19.130
-    port: 5672
-    virtual-host: /
-    username: rabbitmq
-    password: rabbitmq
+    rabbitmq:
+        host: 192.168.19.130
+        port: 5672
+        virtual-host: /
+        username: rabbitmq
+        password: rabbitmq
 ```
 
 #### 3.基本消息队列处理
@@ -91,7 +95,7 @@ public class PublisherApplicationTests {
         String queue = "only_queue";
         rabbitTemplate.convertAndSend(queue, message);
     }
-}    
+}
 ```
 
 声明消费者及其监听的消息队列，通过`@RabbitListener`注解声明当前消费者监听的消息队列为`only_queue`。消费者类应使用`@Component`注解注册为`Spring`管理的`Bean`对象。
@@ -104,7 +108,7 @@ public class RabbitMqListener {
     public void listenOnlyQueue(String msg) {
         System.out.println("消费者收到消息：" + msg);
     }
-}    
+}
 ```
 
 ##### 2）fanout模式消息转发
@@ -126,7 +130,7 @@ public class PublisherApplicationTests {
         String message = "Hello, RabbitMQ!";
         rabbitTemplate.convertAndSend(exchange, null, message);
     }
-} 
+}
 ```
 
 声明与`amq.fanout`消息交换机所绑定的两个消息队列，`RabbitMQ`服务器将会向两个消息队列均发送消息。
@@ -144,7 +148,7 @@ public class RabbitMqListener {
     public void listenFanoutQueue2(String msg) {
         log.info("消费者(2)收到消息：" + msg);
     }
-} 
+}
 ```
 
 ##### 3）direct模式消息转发
@@ -169,7 +173,7 @@ public class PublisherApplicationTests {
 
         rabbitTemplate.convertAndSend(exchange, routingKey, message);
     }
-}    
+}
 ```
 
 由于转发的消息类型为`Map`，转发方法的底层消息转换器会将其序列化为不可读字段，因此可以将消息转换器自定义为`Json`格式转换器。
@@ -197,7 +201,7 @@ public class RabbitmqConfig {
         // 应用自定义的消息转换器
         rabbitTemplate.setMessageConverter(jackson2JsonMessageConverter);
     }
-}    
+}
 ```
 
 声明与`amq.direct`消息交换机所绑定的消息队列，消息交换机`amq.direct`与消息队列`amq.direct.queue`通过`direct`作为路由绑定`key`进行绑定，`RabbitMQ`服务器将会根据路由绑定`key`向消息队列发送消息。
@@ -212,7 +216,7 @@ public class RabbitMqListener {
     public void listenDirectQueue(Map<?, ?> msg) {
         log.info("消费者收到消息：" + msg);
     }
-} 
+}
 ```
 
 通过`@RabbitListener`注解的`bindings`参数配置可以通过代码实现消息交换机与消息队列的绑定，无需通过`RabbitMQ`控制台进行手动操作。
@@ -231,10 +235,10 @@ public class RabbitMqListener {
 
 ```yml
 spring:
-  rabbitmq:
-    listener:
-      simple:
-        acknowledge-mode: auto
+    rabbitmq:
+        listener:
+            simple:
+                acknowledge-mode: auto
 ```
 
 将`acknowledge-mode`模式设置为`auto`，即可实现自动处理。
@@ -243,15 +247,15 @@ spring:
 
 ```yml
 spring:
-  rabbitmq:
-    listener:
-      simple:
-        retry:
-          enabled: true # 开启消费者失败重试
-          initial-interval: 1000 # 初始的失败等待时长为1秒
-          multiplier: 1 # 失败的等待时长倍数，下次等待时长 = multiplier * last-interval
-          max-attempts: 3 # 最大重试次数
-          stateless: true # true无状态；false有状态。如果业务中包含事务，这里改为false
+    rabbitmq:
+        listener:
+            simple:
+                retry:
+                    enabled: true # 开启消费者失败重试
+                    initial-interval: 1000 # 初始的失败等待时长为1秒
+                    multiplier: 1 # 失败的等待时长倍数，下次等待时长 = multiplier * last-interval
+                    max-attempts: 3 # 最大重试次数
+                    stateless: true # true无状态；false有状态。如果业务中包含事务，这里改为false
 ```
 
 当执行消费逻辑失败后，等待一秒后再次投递消息，最多重复三次即放弃此次消息。此消息将被废弃，无法寻回。
@@ -322,7 +326,7 @@ public class RabbitmqConfig {
     public MessageRecoverer messageRecoverer(RabbitTemplate rabbitTemplate) {
         return new RepublishMessageRecoverer(rabbitTemplate, "error.exchange", "error");
     }
-}  
+}
 ```
 
 ##### 2）发送延迟消息
@@ -356,7 +360,7 @@ public class RabbitMqListener {
     public void listenDelayQueue(String msg) {
         log.info("消费者<delay.queue>收到消息：" + msg);
     }
-} 
+}
 ```
 
 向延迟消息交换机`delay.exchange`指定路由绑定`key`为`delay`发送延时`10s`的消息`delay`。
@@ -378,7 +382,7 @@ public class PublisherApplicationTests {
             }
         });
     }
-} 
+}
 ```
 
 例如网购下单三十分钟之后未支付即自动取消订单，就使用了延迟消息发送功能。当下单成功后即发送一个延时消息，等待指定时间之后，再判断订单是否成功支付。由此可见，发送延迟消息此功能在实际业务中应用的广泛性。

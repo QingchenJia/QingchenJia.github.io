@@ -1,8 +1,11 @@
 ---
-title: VibeCoding Session Manager 使用与推荐
-typora-root-url: VibeCoding Session Manager 使用与推荐
-date: 2026-05-09 00:00:00
+title: VibeCoding Session Manager使用与推荐
+typora-root-url: VibeCoding Session Manager使用与推荐
+date: 2026-05-09 19:45:43
 tags:
+    - VibeCoding
+    - CLI
+    - AI编程工具
 ---
 
 ## 简介

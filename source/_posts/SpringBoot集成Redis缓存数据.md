@@ -3,7 +3,11 @@ title: SpringBoot集成Redis缓存数据
 typora-root-url: SpringBoot集成Redis缓存数据
 date: 2024-11-26 19:49:56
 tags:
+    - SpringBoot
+    - Redis
+    - 缓存
 ---
+
 ### 一、引言
 
 `Redis`是目前使用最为广泛的非关系型数据库，常用于`Web`项目中缓存数据。在访问量非常高的项目中，用户每与系统进行交互都将伴随后端对数据库的操作，通常其中最多的操作类型为查询，大量的访问数据库可能会导致数据库不堪重负。因此，使用`Redis`来缓存查询结果数据成了一个良好的解决方案，在首次查询时将查询结果缓存至`Redis`数据库中，下次查询同样的数据即从缓存中提取数据并返回。当数据库中的原始数据发生改变时，清楚`Redis`缓存，以保证数据同步。
@@ -46,11 +50,11 @@ tags:
 
 ```yml
 spring:
-  data:
-    redis:
-      host: 127.0.0.1
-      port: 6379
-      password:
+    data:
+        redis:
+            host: 127.0.0.1
+            port: 6379
+            password:
 ```
 
 #### 5.书写测试代码

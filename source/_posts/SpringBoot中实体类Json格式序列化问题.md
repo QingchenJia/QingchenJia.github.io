@@ -3,7 +3,11 @@ title: SpringBoot中实体类Json格式序列化问题
 typora-root-url: SpringBoot中实体类Json格式序列化问题
 date: 2024-12-01 14:27:24
 tags:
+    - SpringBoot
+    - JSON
+    - 序列化
 ---
+
 ### 一、引言
 
 在使用`SpringBoot`开发项目时，通常需要将数据以`JSON`格式传递到前端。如果数据库表的主键类型是`BigInt`，对应`Java`实体类的主键类型为`Long`，且主键值是通过雪花算法生成的，可能会在前端展示时出现精度丢失问题。这是因为`Java`的`Long`类型在前端的`JavaScript`中会被解析为`Number`类型，而`Number`类型精度最高为`15`位，超过这个长度时会导致精度丢失。

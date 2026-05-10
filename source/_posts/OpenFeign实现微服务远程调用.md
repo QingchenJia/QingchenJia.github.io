@@ -3,7 +3,11 @@ title: OpenFeign实现微服务远程调用
 typora-root-url: OpenFeign实现微服务远程调用
 date: 2025-01-19 14:50:15
 tags:
+    - OpenFeign
+    - SpringCloud
+    - 微服务
 ---
+
 ### 一、引言
 
 针对`SpringBoot`单体项目中的不同服务层业务交互，通过注入对应的服务层接口即可实现。单体项目经过拆分成为分布式微服务项目后，不同的服务分处不同模块，无法实现服务层接口的注入。`OpenFeign`对此问题，给出了良好的解决方案，使用`OpenFeign`向`SpringCloud`项目中目标微服务模块发送远程请求，由目标微服务模块完成对应逻辑，即可达到与单体项目服务层业务交互同样的结果。
@@ -32,20 +36,20 @@ systemctl stop firewalld
 
 ```yml
 spring:
-  application:
-    name: item-service	# 商品微服务id
-  cloud:
-    nacos:
-      server-addr: 192.168.19.130:8848	# Nacos服务注册中心uri
+    application:
+        name: item-service # 商品微服务id
+    cloud:
+        nacos:
+            server-addr: 192.168.19.130:8848 # Nacos服务注册中心uri
 ```
 
 ```yml
 spring:
-  application:
-    name: cart-service	# 购物车微服务id
-  cloud:
-    nacos:
-      server-addr: 192.168.19.130:8848	# Nacos服务注册中心uri
+    application:
+        name: cart-service # 购物车微服务id
+    cloud:
+        nacos:
+            server-addr: 192.168.19.130:8848 # Nacos服务注册中心uri
 ```
 
 `Nacos`服务注册中心通过名称来区分不同的微服务。

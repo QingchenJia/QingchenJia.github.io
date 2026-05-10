@@ -3,6 +3,9 @@ title: 基于Hexo框架搭建博客
 typora-root-url: 基于Hexo框架搭建博客
 date: 2024-10-21 19:15:30
 tags:
+    - Hexo
+    - 博客
+    - GitHub Pages
 ---
 
 ### 一、引言
@@ -66,37 +69,36 @@ theme: redefine
 
 ```yml
 info:
-  # Site title
-  title: QingchenJia-Blog
-  # Author name
-  author: QingchenJia
-  # Site URL
-  url: https://qingchenjia.github.io/
+    # Site title
+    title: QingchenJia-Blog
+    # Author name
+    author: QingchenJia
+    # Site URL
+    url: https://qingchenjia.github.io/
 ```
 
 开启字幕动画功能，并设置明亮主题的背景图片，`title`对应字幕标题，`text`对应字幕正文，为数组格式，添加多行正文需通过逗号隔开。填写个人社交账号链接，开启功能后，主页右下角会出现对应平台`logo`，点击即可跳转。
 
-
 ```yml
 home_banner:
-  # Whether to enable home banner
-  enable: true
-  # Home banner image
-  image: 
-    light: /images/background.webp # light mode
-    dark: /images/background-dark.webp # dark mode
-  # Home banner title
-  title: The Blog of QingchenJia
-  # Home banner subtitle
-  subtitle:
-    text: [Welcome to this blog which belongs to QingchenJia!] # subtitle text, array
-  social_links:
-    # Whether to enable
+    # Whether to enable home banner
     enable: true
-    # Social links
-    links:
-      github: https://github.com/QingchenJia # your GitHub URL
-      email: 879484952@qq.com # your email
+    # Home banner image
+    image:
+        light: /images/background.webp # light mode
+        dark: /images/background-dark.webp # dark mode
+    # Home banner title
+    title: The Blog of QingchenJia
+    # Home banner subtitle
+    subtitle:
+        text: [Welcome to this blog which belongs to QingchenJia!] # subtitle text, array
+    social_links:
+        # Whether to enable
+        enable: true
+        # Social links
+        links:
+            github: https://github.com/QingchenJia # your GitHub URL
+            email: 879484952@qq.com # your email
 ```
 
 #### 5.部署至GitHub-Page
@@ -124,53 +126,53 @@ hexo s 	#也可以写作hexo server，部署至本地浏览
 name: Pages
 
 on:
-  push:
-    branches:
-      - master  # default branch
+    push:
+        branches:
+            - master # default branch
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          # If your repository depends on submodule, please see: https://github.com/actions/checkout
-          submodules: recursive
-      - name: Use Node.js 20
-        uses: actions/setup-node@v4
-        with:
-          # Examples: 20, 18.19, >=16.20.2, lts/Iron, lts/Hydrogen, *, latest, current, node
-          # Ref: https://github.com/actions/setup-node#supported-version-syntax
-          node-version: '20'
-      - name: Cache NPM dependencies
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-npm-cache
-          restore-keys: |
-            ${{ runner.OS }}-npm-cache
-      - name: Install Dependencies
-        run: npm install
-      - name: Build
-        run: npm run build
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./public
-  deploy:
-    needs: build
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+                  # If your repository depends on submodule, please see: https://github.com/actions/checkout
+                  submodules: recursive
+            - name: Use Node.js 20
+              uses: actions/setup-node@v4
+              with:
+                  # Examples: 20, 18.19, >=16.20.2, lts/Iron, lts/Hydrogen, *, latest, current, node
+                  # Ref: https://github.com/actions/setup-node#supported-version-syntax
+                  node-version: "20"
+            - name: Cache NPM dependencies
+              uses: actions/cache@v4
+              with:
+                  path: node_modules
+                  key: ${{ runner.OS }}-npm-cache
+                  restore-keys: |
+                      ${{ runner.OS }}-npm-cache
+            - name: Install Dependencies
+              run: npm install
+            - name: Build
+              run: npm run build
+            - name: Upload Pages artifact
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: ./public
+    deploy:
+        needs: build
+        permissions:
+            pages: write
+            id-token: write
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        runs-on: ubuntu-latest
+        steps:
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
 ```
 
 完成上述操作后，访问`https://用户名.github.io/`即可浏览博客网站页面。
@@ -191,8 +193,8 @@ npm install hexo-renderer-marked
 ```yml
 post_asset_folder: true
 marked:
-  prependRoot: true
-  postAsset: true
+    prependRoot: true
+    postAsset: true
 ```
 
 然后修改`scaffolds`文件夹下的`post.md`，添加哈希值`typora-root-url: {{title}}`，这样我们在用`typora`的时候会使图片默认路径为同文件夹下的同名文件夹。
@@ -204,7 +206,7 @@ marked:
 进入`.config.yml` ，对`timezone`进行配置，修改为中国上海的时区即可正常展示。
 
 ```yml
-timezone: 'Asia/Shanghai'
+timezone: "Asia/Shanghai"
 ```
 
 ### 四、写在最后

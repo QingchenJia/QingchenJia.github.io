@@ -3,7 +3,11 @@ title: CentOS7.6虚拟机基础配置
 typora-root-url: CentOS7.6虚拟机基础配置
 date: 2024-12-29 18:51:04
 tags:
+	- CentOS
+	- Linux
+	- 虚拟机
 ---
+
 ### 一、引言
 
 开发过程中，使用`Windows`进行命令行操作十分不便，引入`Linux`的虚拟机进行辅助无疑是一个好的选择。`Linux`不同于`Windows`，其`GUI`偏弱，因此需要通过命令行的方式来完成对应的配置，这里主要以`CentOS7.6`版本操作系统为例进行演示。
@@ -95,7 +99,9 @@ systemctl status network
 ```bash
 yum install -y openssh-server
 ```
+
 启动`SSH`服务，并检查其状态是否启动成功。如果`SSH`服务运行正常，状态应显示为`active (running)`。
+
 ```bash
 systemctl start sshd
 systemctl status sshd

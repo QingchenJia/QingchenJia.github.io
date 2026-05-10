@@ -3,7 +3,11 @@ title: SpringBoot集成Mybatis枚举类型转换
 typora-root-url: SpringBoot集成Mybatis枚举类型转换
 date: 2025-02-23 17:13:02
 tags:
+    - SpringBoot
+    - MyBatis
+    - 枚举
 ---
+
 ### 一、前言
 
 数据库表中的列通常选择存储数字，而与数据库表对应的实体类中的相应字段，为避免出现魔法值的情况，通常使用枚举类型来替代。在进行数据持久化操作时，数据库表中的数字与实体类中的枚举类型之间必然会出现类型转换问题。
@@ -27,7 +31,7 @@ public enum XueliType {
         this.code = code;
         this.desc = desc;
     }
-    
+
     @JsonCreator
     public static XueliType fromCode(int code) {
         for (XueliType xueliType : XueliType.values()) {
