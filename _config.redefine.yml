@@ -190,6 +190,9 @@ navbar:
         Home:
             path: /
             icon: fa-regular fa-house # can be empty
+        Tags: #取名随意
+            icon: fa-solid fa-tags #图标
+            path: /tags/ #链接
         # Archives:
         #   path: /archives
         #   icon: fa-regular fa-archive # can be empty
