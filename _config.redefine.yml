@@ -412,14 +412,35 @@ plugins:
         enable: false # Whether to enable
     # Aplayer. See https://github.com/DIYgod/APlayer
     aplayer:
-        enable: false # Whether to enable
+        enable: true # Whether to enable
         type: fixed # fixed, mini
         audios:
-            - name: # audio name
-              artist: # audio artist
-              url: # audio url
-              cover: # audio cover url
-              lrc: # audio cover lrc
+            # 音源：https://www.gequhai.com/
+            - name: The Way I Still Love You # audio name
+              artist: Reynard Silva # audio artist
+              url: /assets/music/the-way-i-still-love-you.mp3 # audio url
+              cover: https://img2.kuwo.cn/star/albumcover/120/s4s30/70/766609769.jpg # audio cover url
+              lrc: /assets/music/the-way-i-still-love-you.lrc # audio cover lrc
+            - name: 咏春
+              artist: 七朵组合
+              url: /assets/music/yong-chun.mp3
+              cover: https://img2.kuwo.cn/star/albumcover/120/40/12/2628794840.jpg
+              lrc: /assets/music/yong-chun.lrc
+            - name: We Don't Talk Anymore
+              artist: Charlie Puth&Selena Gomez
+              url: /assets/music/we-dont-talk-anymore.mp3
+              cover: https://img2.kuwo.cn/star/albumcover/120/83/61/1816956618.jpg
+              lrc: /assets/music/we-dont-talk-anymore.lrc
+            - name: 最好的我
+              artist: 龚芝怡&房祖名
+              url: /assets/music/zui-hao-de-wo.mp3
+              cover: https://img2.kuwo.cn/star/albumcover/120/26/35/1056827838.jpg
+              lrc: /assets/music/zui-hao-de-wo.lrc
+            - name: Take Me Hand
+              artist: DAISHI DANCE&Cécile Corbel
+              url: /assets/music/take-me-hand.mp3
+              cover: https://img2.kuwo.cn/star/albumcover/120/s4s52/46/1549652837.jpg
+              lrc: /assets/music/take-me-hand.lrc
     #      - name: # audio name
     #        artist: # audio artist
     #        url: # audio url
