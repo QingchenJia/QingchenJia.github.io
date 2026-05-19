@@ -107,7 +107,7 @@ vim /etc/profile
 
 在文件末尾插入下述内容，其中`:$PATH`代表在原先环境变量的基础上，拼接上了冒号之前的部分，保证了原环境变量依然有效。
 
-```
+```bash
 PATH=/usr/local/nginx/sbin:$PATH
 ```
 
@@ -165,7 +165,7 @@ cat nginx.cong
 
 `nginx.conf`文件过滤注释配置部分后文件内容如下，默认`Nginx`服务只加载启动了如下配置。
 
-```text
+```nginx
 worker_processes  1;	# Nginx 在启动时会创建 1 个工作进程
 
 events {
@@ -193,7 +193,7 @@ http {
 
 客户端向`Nginx`服务器发送请求，部署`Nginx`的服务器将`localhost:80`接收到的请求，转发到`taget_url`由它进行处理响应返回值，经由`Nginx`服务转发回请求的客户端。
 
-```text
+```nginx
 server {
     listen       80;
     server_name  localhost;
@@ -210,7 +210,7 @@ server {
 
 客户端向`Nginx`服务器发送请求，部署`Nginx`的服务器将`localhost:80`接收到的请求，通过负载均衡策略算法（默认策略为轮询方式）选择转发到`taget_server_urls`其中一台服务器，由它进行处理响应返回值，经由`Nginx`服务转发回请求的客户端。
 
-```text
+```nginx
 upstream target_server_urls {	# 目标服务器集群，数量不一，此处以 3 台为例
 	server url1;
 	server url2;
