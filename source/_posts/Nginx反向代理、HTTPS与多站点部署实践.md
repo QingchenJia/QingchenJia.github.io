@@ -2,6 +2,8 @@
 title: Nginx反向代理、HTTPS与多站点部署实践
 typora-root-url: Nginx反向代理、HTTPS与多站点部署实践
 date: 2026-05-19 12:20:05
+categories:
+    - 服务部署
 tags:
     - Nginx
     - HTTPS

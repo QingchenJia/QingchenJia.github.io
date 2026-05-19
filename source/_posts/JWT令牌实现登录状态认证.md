@@ -2,6 +2,8 @@
 title: JWT令牌实现登录状态认证
 typora-root-url: JWT令牌实现登录状态认证
 date: 2025-03-03 23:08:17
+categories:
+    - 后端开发
 tags:
     - JWT
     - SpringBoot

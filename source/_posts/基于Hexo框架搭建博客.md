@@ -2,6 +2,8 @@
 title: 基于Hexo框架搭建博客
 typora-root-url: 基于Hexo框架搭建博客
 date: 2024-10-21 19:15:30
+categories:
+    - 博客建设
 tags:
     - Hexo
     - 博客

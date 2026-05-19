@@ -2,6 +2,8 @@
 title: Windows下PowerShell终端美化教程
 typora-root-url: Windows下PowerShell终端美化教程
 date: 2026-05-13 12:41:56
+categories:
+    - 开发工具
 tags:
     - PowerShell
     - OhMyPosh

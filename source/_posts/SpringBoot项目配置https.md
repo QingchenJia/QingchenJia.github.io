@@ -2,6 +2,8 @@
 title: SpringBoot项目配置https
 typora-root-url: SpringBoot项目配置https
 date: 2024-10-25 20:38:29
+categories:
+    - 后端开发
 tags:
     - SpringBoot
     - HTTPS

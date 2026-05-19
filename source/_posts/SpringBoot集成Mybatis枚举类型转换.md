@@ -2,6 +2,8 @@
 title: SpringBoot集成Mybatis枚举类型转换
 typora-root-url: SpringBoot集成Mybatis枚举类型转换
 date: 2025-02-23 17:13:02
+categories:
+    - 后端开发
 tags:
     - SpringBoot
     - MyBatis

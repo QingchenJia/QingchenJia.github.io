@@ -2,6 +2,8 @@
 title: Nacos微服务注册中心Docker部署
 typora-root-url: Nacos微服务注册中心Docker部署
 date: 2025-01-17 21:29:51
+categories:
+    - 服务部署
 tags:
     - Nacos
     - Docker

@@ -2,6 +2,8 @@
 title: Codex安装及其使用
 typora-root-url: Codex安装及其使用
 date: 2026-05-16 14:13:07
+categories:
+    - 开发工具
 tags:
     - Codex
     - OpenAI

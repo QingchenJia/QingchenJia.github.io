@@ -2,6 +2,8 @@
 title: SpringBoot集成Redis缓存数据
 typora-root-url: SpringBoot集成Redis缓存数据
 date: 2024-11-26 19:49:56
+categories:
+    - 后端开发
 tags:
     - SpringBoot
     - Redis

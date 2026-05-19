@@ -2,6 +2,8 @@
 title: draw.io与next-ai-draw-io本地部署运行实践
 typora-root-url: draw.io与next-ai-draw-io本地部署运行实践
 date: 2026-05-18 15:20:39
+categories:
+    - 开发工具
 tags:
     - draw.io
     - next-ai-draw-io

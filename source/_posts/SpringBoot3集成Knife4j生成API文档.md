@@ -2,6 +2,8 @@
 title: SpringBoot3集成Knife4j生成API文档
 typora-root-url: SpringBoot3集成Knife4j生成API文档
 date: 2024-11-25 18:51:57
+categories:
+    - 后端开发
 tags:
     - SpringBoot
     - Knife4j

@@ -2,6 +2,8 @@
 title: Docker的安装与常用服务部署实践
 typora-root-url: Docker的安装与常用服务部署实践
 date: 2026-05-17 20:43:51
+categories:
+    - 服务部署
 tags:
     - Docker
     - Linux

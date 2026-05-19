@@ -2,6 +2,8 @@
 title: CentOS7.6虚拟机基础配置
 typora-root-url: CentOS7.6虚拟机基础配置
 date: 2024-12-29 18:51:04
+categories:
+    - 服务部署
 tags:
 	- CentOS
 	- Linux

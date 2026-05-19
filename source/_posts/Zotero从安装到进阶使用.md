@@ -2,6 +2,8 @@
 title: Zotero从安装到进阶使用
 typora-root-url: Zotero从安装到进阶使用
 date: 2026-05-15 22:48:35
+categories:
+    - 学术写作
 tags:
     - Zotero
     - 文献管理

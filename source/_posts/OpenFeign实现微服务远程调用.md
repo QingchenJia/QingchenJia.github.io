@@ -2,6 +2,8 @@
 title: OpenFeign实现微服务远程调用
 typora-root-url: OpenFeign实现微服务远程调用
 date: 2025-01-19 14:50:15
+categories:
+    - 后端开发
 tags:
     - OpenFeign
     - SpringCloud

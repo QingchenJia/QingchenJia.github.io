@@ -193,6 +193,9 @@ navbar:
         Tags: #取名随意
             icon: fa-solid fa-tags #图标
             path: /tags/ #链接
+        Categories: #取名随意
+            icon: fa-solid fa-folder #图标
+            path: /categories/ #链接
         # Archives:
         #   path: /archives
         #   icon: fa-regular fa-archive # can be empty
@@ -329,7 +332,7 @@ articles:
 # Docs: https://redefine-docs.ohevan.com/posts/comment
 comment:
     # Whether to enable comment
-    enable: true
+    enable: false
     # Comment system
     system: waline # waline, gitalk, twikoo, giscus
     # System configuration
@@ -377,7 +380,7 @@ footer:
     # Icon in footer, write fontawesome icon code here
     icon: '<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>'
     # The start time of the website, format: YYYY/MM/DD HH:mm:ss
-    start: 2022/8/17 11:45:14
+    start: 2024/10/20 20:35:10
     # Site statistics
     statistics: true # show site statistics or not (total articles, total words)
     # Footer message
@@ -427,12 +430,12 @@ plugins:
               cover: https://img2.kuwo.cn/star/albumcover/120/40/12/2628794840.jpg
               lrc: /assets/music/yong-chun.lrc
             - name: We Don't Talk Anymore
-              artist: Charlie Puth&Selena Gomez
+              artist: Charlie Puth && Selena Gomez
               url: /assets/music/we-dont-talk-anymore.mp3
               cover: https://img2.kuwo.cn/star/albumcover/120/83/61/1816956618.jpg
               lrc: /assets/music/we-dont-talk-anymore.lrc
             - name: 最好的我
-              artist: 龚芝怡&房祖名
+              artist: 龚芝怡 && 房祖名
               url: /assets/music/zui-hao-de-wo.mp3
               cover: https://img2.kuwo.cn/star/albumcover/120/26/35/1056827838.jpg
               lrc: /assets/music/zui-hao-de-wo.lrc

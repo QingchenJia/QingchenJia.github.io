@@ -2,6 +2,8 @@
 title: Git使用教程
 typora-root-url: Git使用教程
 date: 2026-05-10 12:50:44
+categories:
+    - 开发工具
 tags:
     - Git
     - 版本控制

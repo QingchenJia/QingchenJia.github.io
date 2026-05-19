@@ -2,6 +2,8 @@
 title: VibeCoding Session Manager使用与推荐
 typora-root-url: VibeCoding Session Manager使用与推荐
 date: 2026-05-09 19:45:43
+categories:
+    - 开发工具
 tags:
     - VibeCoding
     - CLI

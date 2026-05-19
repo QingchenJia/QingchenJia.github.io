@@ -2,6 +2,8 @@
 title: SpringBoot项目整合Mybatis-Plus的分页查询
 typora-root-url: SpringBoot项目整合Mybatis-Plus的分页查询
 date: 2024-11-16 17:57:39
+categories:
+    - 后端开发
 tags:
     - SpringBoot
     - MyBatis-Plus

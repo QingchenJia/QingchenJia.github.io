@@ -2,6 +2,8 @@
 title: SpringBoot中实体类Json格式序列化问题
 typora-root-url: SpringBoot中实体类Json格式序列化问题
 date: 2024-12-01 14:27:24
+categories:
+    - 后端开发
 tags:
     - SpringBoot
     - JSON

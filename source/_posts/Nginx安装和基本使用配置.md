@@ -2,6 +2,8 @@
 title: Nginx安装和基本使用配置
 typora-root-url: Nginx安装和基本使用配置
 date: 2025-01-02 13:47:28
+categories:
+    - 服务部署
 tags:
     - Nginx
     - 反向代理

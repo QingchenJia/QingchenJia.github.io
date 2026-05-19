@@ -2,6 +2,8 @@
 title: CesiumJS框架安装和基础应用
 typora-root-url: CesiumJS框架安装和基础应用
 date: 2026-05-12 11:23:49
+categories:
+    - 前端可视化
 tags:
     - CesiumJS
     - 三维可视化
