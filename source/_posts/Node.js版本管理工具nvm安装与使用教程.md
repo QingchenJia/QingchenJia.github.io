@@ -1,7 +1,7 @@
 ---
 title: Node.js版本管理工具nvm安装与使用教程
 typora-root-url: Node.js版本管理工具nvm安装与使用教程
-date: 2026-05-24 16:18:36
+date: 2026-05-24 13:08:36
 categories:
     - 开发工具
 tags:
