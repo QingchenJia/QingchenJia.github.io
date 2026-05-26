@@ -397,28 +397,32 @@ const option = {
 
 ```js
 const loadSalesData = async () => {
-    const response = await fetch("/api/statistics/monthly-sales");
-    if (!response.ok) {
-        throw new Error("月度销售数据请求失败");
-    }
+    try {
+        const response = await fetch("/api/statistics/monthly-sales");
+        if (!response.ok) {
+            throw new Error("月度销售数据请求失败");
+        }
 
-    const data = await response.json();
+        const data = await response.json();
 
-    if (!chartInstance) {
-        return;
-    }
+        if (!chartInstance) {
+            return;
+        }
 
-    chartInstance.setOption({
-        xAxis: {
-            data: data.map((item) => item.month),
-        },
-        series: [
-            {
-                name: "销售额",
-                data: data.map((item) => item.amount),
+        chartInstance.setOption({
+            xAxis: {
+                data: data.map((item) => item.month),
             },
-        ],
-    });
+            series: [
+                {
+                    name: "销售额",
+                    data: data.map((item) => item.amount),
+                },
+            ],
+        });
+    } catch (error) {
+        console.error("加载销售数据失败：", error);
+    }
 };
 ```
 
@@ -427,6 +431,7 @@ const loadSalesData = async () => {
 - 容器必须有稳定高度；如果父布局在切换侧栏、标签页或弹窗后改变尺寸，也应在可见且尺寸稳定时调用实例的 `resize()`。
 - 只要数据变动，就可以继续调用 `setOption` 合并新配置，无需重复创建实例。
 - 异步请求返回后，应先确认组件仍处于挂载状态且图表实例存在；更复杂的场景中，可以在组件卸载时取消尚未完成的请求。
+- 真实页面应在接口失败时展示提示或空状态；示例使用 `console.error` 标明错误处理所在位置。
 - 更新多个系列时应保留稳定且唯一的 `name`，或显式使用系列标识，使 ECharts 能够将新数据对应到已有系列。
 - 组件卸载时必须移除注册过的窗口监听，并调用 `dispose()` 清理图表实例。
 
