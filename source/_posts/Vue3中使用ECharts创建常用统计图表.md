@@ -3,7 +3,7 @@ title: Vue3中使用ECharts创建常用统计图表
 typora-root-url: Vue3中使用ECharts创建常用统计图表
 date: 2026-05-26 10:46:09
 categories:
-    - 前端可视化
+    - 前端开发
 tags:
     - ECharts
     - 数据可视化
