@@ -1,6 +1,11 @@
 ---
-title: {{ title }}
-date: {{ date }}
+title: { { title } }
+date: { { date } }
+typora-root-url: { { title } }
+categories:
+    - { { category } }
 tags:
-typora-root-url: {{ title }}
+    - { { tag1 } }
+    - { { tag2 } }
+    - { { tag3 } }
 ---
