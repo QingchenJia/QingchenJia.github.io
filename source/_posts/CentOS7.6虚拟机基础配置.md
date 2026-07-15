@@ -22,7 +22,7 @@ tags:
 
 在创建虚拟机配置文件时，网络适配器选择`NAT`模式。
 
-![](../CentOS7-6虚拟机基础配置/CentOS7.6VM-1.png)
+![](../CentOS7.6虚拟机基础配置/CentOS7.6VM-1.png)
 
 使用`NAT`模式能够在物理机上划分出一片子网，用以分配`IP`给配置在该物理机上的虚拟机。各虚拟机访问互联网均须通过物理机传输网络，而不是与物理机享有同等地位。
 
@@ -30,7 +30,7 @@ tags:
 
 点击`VMware Workstation`菜单栏中编辑->虚拟网络编辑器->`NAT`设置，查看`NAT`模式下的详细参数。
 
-![](../CentOS7-6虚拟机基础配置/CentOS7.6VM-2.png)
+![](../CentOS7.6虚拟机基础配置/CentOS7.6VM-2.png)
 
 `NAT`为虚拟机划分了的子网`IP`为192.168.19.0，重点关注子网掩码255.255.255.0和网关`IP`192.168.19.2。
 
@@ -119,7 +119,7 @@ systemctl enable sshd
 
 使用`FinalShell`进行`SSH`连接，名称可任意编辑，主机填写成功配置的静态`IP`地址，端口号默认为22。认证方法采用密码，使用管理员密码以`root`身份连接。
 
-![](../CentOS7-6虚拟机基础配置/CentOS7.6VM-3.png)
+![](../CentOS7.6虚拟机基础配置/CentOS7.6VM-3.png)
 
 #### 3.更换国内yum源
 
@@ -127,7 +127,7 @@ systemctl enable sshd
 
 找到`centos`，访问其镜像源配置。
 
-![](../CentOS7-6虚拟机基础配置/CentOS7.6VM-4.png)
+![](../CentOS7.6虚拟机基础配置/CentOS7.6VM-4.png)
 
 ##### 2）配置阿里云yum源
 

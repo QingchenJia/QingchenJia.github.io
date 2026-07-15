@@ -1,6 +1,6 @@
 ---
 title: Claude Code、Codex、OpenCode等CLI编码Agent横向对比与省钱方案
-typora-root-url: Claude-Code、Codex、OpenCode等CLI编码Agent横向对比与省钱方案
+typora-root-url: Claude Code、Codex、OpenCode等CLI编码Agent横向对比与省钱方案
 date: 2026-06-09 19:42:32
 categories:
     - 开发工具

@@ -1,6 +1,6 @@
 ---
 title: Windows下Claude Code安装与使用教程
-typora-root-url: Windows下ClaudeCode安装与使用教程
+typora-root-url: Windows下Claude Code安装与使用教程
 date: 2026-05-14 10:46:13
 categories:
     - 开发工具
