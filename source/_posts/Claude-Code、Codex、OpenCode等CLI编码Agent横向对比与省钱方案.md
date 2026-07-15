@@ -21,8 +21,6 @@ CLI 编码 Agent 已经从“能在终端里聊天”发展成了可以读取仓
 
 同一个模型放进不同 Agent，完成任务的稳定性可能不同；同一个 Agent 更换模型后，成本和效果也会明显变化。因此，真正经济的方案不是只找“最强模型”，而是组合合适的 Agent、模型和计费方式。
 
-> 本文信息与价格核验时间为 **2026 年 6 月 9 日，Asia/Shanghai（UTC+8）**。模型、套餐、限额和接口兼容性变化较快，购买前应再次查看官方页面。
-
 ## 一、先说结论
 
 如果只看个人开发者的综合投入产出比，可以直接按下面选择：
@@ -47,12 +45,12 @@ CLI 编码 Agent 已经从“能在终端里聊天”发展成了可以读取仓
 
 ## 二、核心能力横向对比
 
-| 工具 | 定位 | 模型自由度 | Agent 完整度 | 自动化 | 成本模式 | 最适合 |
-| --- | --- | --- | --- | --- | --- | --- |
-| Claude Code | Anthropic 官方终端 Agent | 中等，原生 Claude 最稳，也支持 Anthropic 兼容网关 | 很强 | `-p`、Hooks、MCP、子 Agent | Claude 订阅/API，或第三方 API | 长任务、复杂重构、重度终端工作流 |
-| Codex | OpenAI 官方编码 Agent | 主要使用 OpenAI 模型 | 很强 | `codex exec`、Review、Skills、MCP | ChatGPT 套餐或 API | 日常开发、代码审查、固定月费用户 |
-| OpenCode | 开源多模型 Agent | 很高，支持大量提供商和本地模型 | 强 | 多会话、Agent、MCP、脚本调用 | 外壳免费，模型单独计费 | 多模型切换、BYOK、可控部署 |
-| Gemini CLI | Google 开源终端 Agent | 主要使用 Gemini，也支持扩展 | 中上 | Headless、MCP、脚本调用 | 免费额度、Google AI 套餐或 API | 零预算入门、超长上下文、Google 生态 |
+| 工具        | 定位                     | 模型自由度                                        | Agent 完整度 | 自动化                            | 成本模式                       | 最适合                              |
+| ----------- | ------------------------ | ------------------------------------------------- | ------------ | --------------------------------- | ------------------------------ | ----------------------------------- |
+| Claude Code | Anthropic 官方终端 Agent | 中等，原生 Claude 最稳，也支持 Anthropic 兼容网关 | 很强         | `-p`、Hooks、MCP、子 Agent        | Claude 订阅/API，或第三方 API  | 长任务、复杂重构、重度终端工作流    |
+| Codex       | OpenAI 官方编码 Agent    | 主要使用 OpenAI 模型                              | 很强         | `codex exec`、Review、Skills、MCP | ChatGPT 套餐或 API             | 日常开发、代码审查、固定月费用户    |
+| OpenCode    | 开源多模型 Agent         | 很高，支持大量提供商和本地模型                    | 强           | 多会话、Agent、MCP、脚本调用      | 外壳免费，模型单独计费         | 多模型切换、BYOK、可控部署          |
+| Gemini CLI  | Google 开源终端 Agent    | 主要使用 Gemini，也支持扩展                       | 中上         | Headless、MCP、脚本调用           | 免费额度、Google AI 套餐或 API | 零预算入门、超长上下文、Google 生态 |
 
 ### 1. Claude Code：Agent 外壳成熟，但原生模型成本较高
 
@@ -118,13 +116,13 @@ Gemini CLI 适合：
 
 编码 Agent 的实际效果至少由下面五个因素决定：
 
-| 因素 | 影响 |
-| --- | --- |
-| 模型能力 | 决定推理、代码生成、调试和指令遵循上限 |
+| 因素         | 影响                                           |
+| ------------ | ---------------------------------------------- |
+| 模型能力     | 决定推理、代码生成、调试和指令遵循上限         |
 | 工具协议适配 | 决定模型能否稳定调用 Shell、编辑器、搜索和 MCP |
-| 上下文管理 | 决定长任务是否遗忘目标、重复读取和浪费 Token |
-| Agent 提示词 | 决定规划方式、验证意识和修改范围 |
-| 权限与沙箱 | 决定工具能否安全地自动执行 |
+| 上下文管理   | 决定长任务是否遗忘目标、重复读取和浪费 Token   |
+| Agent 提示词 | 决定规划方式、验证意识和修改范围               |
+| 权限与沙箱   | 决定工具能否安全地自动执行                     |
 
 因此，不能根据模型榜单直接断言“Claude Code + 某模型一定等于原生 Claude Code”。第三方模型虽然可以使用同一套工具，但可能在工具调用格式、上下文压缩、视觉输入、子 Agent 或新功能上存在兼容差异。
 
@@ -132,16 +130,16 @@ Gemini CLI 适合：
 
 下面只列与个人 CLI 编码最相关的价格。税费、汇率和地区价格可能不同。
 
-| 方案 | 当前价格或计费方式 | 说明 |
-| --- | --- | --- |
-| ChatGPT Plus + Codex | 20 美元/月 | Codex 包含在套餐内，API 另行计费 |
-| Claude Pro + Claude Code | 20 美元/月 | Claude 与 Claude Code 共享额度 |
-| Claude Max 5x / 20x | 100 / 200 美元/月 | 适合原生 Claude 重度用户 |
-| OpenCode | Agent 外壳免费 | 模型订阅或 API 单独付费 |
-| Gemini CLI 个人版 | 免费额度 | 官方文档为 60 次/分钟、1000 次/天 |
-| DeepSeek V4 Pro API | 缓存命中 0.003625、未命中 0.435、输出 0.87 美元/百万 Token | 官方 Anthropic 接口可直连 Claude Code |
-| MiMo 2.5 Pro 国内 API | 缓存命中 0.025、未命中 3、输出 6 元/百万 Token | 缓存写入当前限时免费 |
-| MiMo Token Plan | 39 / 99 / 329 / 659 元/月 | Credit 折算规则会调整，购买前应重新计算 |
+| 方案                     | 当前价格或计费方式                                         | 说明                                    |
+| ------------------------ | ---------------------------------------------------------- | --------------------------------------- |
+| ChatGPT Plus + Codex     | 20 美元/月                                                 | Codex 包含在套餐内，API 另行计费        |
+| Claude Pro + Claude Code | 20 美元/月                                                 | Claude 与 Claude Code 共享额度          |
+| Claude Max 5x / 20x      | 100 / 200 美元/月                                          | 适合原生 Claude 重度用户                |
+| OpenCode                 | Agent 外壳免费                                             | 模型订阅或 API 单独付费                 |
+| Gemini CLI 个人版        | 免费额度                                                   | 官方文档为 60 次/分钟、1000 次/天       |
+| DeepSeek V4 Pro API      | 缓存命中 0.003625、未命中 0.435、输出 0.87 美元/百万 Token | 官方 Anthropic 接口可直连 Claude Code   |
+| MiMo 2.5 Pro 国内 API    | 缓存命中 0.025、未命中 3、输出 6 元/百万 Token             | 缓存写入当前限时免费                    |
+| MiMo Token Plan          | 39 / 99 / 329 / 659 元/月                                  | Credit 折算规则会调整，购买前应重新计算 |
 
 DeepSeek 和 MiMo 的缓存命中价格很低，但 Agent 会进行多轮工具调用，实际账单还取决于：
 
@@ -193,14 +191,14 @@ ChatGPT Plus
 
 ```json
 {
-  "env": {
-    "ANTHROPIC_BASE_URL": "https://api.deepseek.com/anthropic",
-    "ANTHROPIC_AUTH_TOKEN": "你的 DeepSeek API Key",
-    "ANTHROPIC_MODEL": "deepseek-v4-pro",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "deepseek-v4-pro",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL": "deepseek-v4-pro",
-    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek-v4-flash"
-  }
+    "env": {
+        "ANTHROPIC_BASE_URL": "https://api.deepseek.com/anthropic",
+        "ANTHROPIC_AUTH_TOKEN": "你的 DeepSeek API Key",
+        "ANTHROPIC_MODEL": "deepseek-v4-pro",
+        "ANTHROPIC_DEFAULT_OPUS_MODEL": "deepseek-v4-pro",
+        "ANTHROPIC_DEFAULT_SONNET_MODEL": "deepseek-v4-pro",
+        "ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek-v4-flash"
+    }
 }
 ```
 
@@ -239,14 +237,14 @@ https://token-plan-cn.xiaomimimo.com/anthropic
 
 ```json
 {
-  "env": {
-    "ANTHROPIC_BASE_URL": "https://token-plan-cn.xiaomimimo.com/anthropic",
-    "ANTHROPIC_AUTH_TOKEN": "你的 MiMo Token Plan Key",
-    "ANTHROPIC_MODEL": "mimo-v2.5-pro",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "mimo-v2.5-pro",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL": "mimo-v2.5-pro",
-    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "mimo-v2.5"
-  }
+    "env": {
+        "ANTHROPIC_BASE_URL": "https://token-plan-cn.xiaomimimo.com/anthropic",
+        "ANTHROPIC_AUTH_TOKEN": "你的 MiMo Token Plan Key",
+        "ANTHROPIC_MODEL": "mimo-v2.5-pro",
+        "ANTHROPIC_DEFAULT_OPUS_MODEL": "mimo-v2.5-pro",
+        "ANTHROPIC_DEFAULT_SONNET_MODEL": "mimo-v2.5-pro",
+        "ANTHROPIC_DEFAULT_HAIKU_MODEL": "mimo-v2.5"
+    }
 }
 ```
 
@@ -275,14 +273,14 @@ OpenCode 中可以使用 `/connect` 添加提供商，再使用 `/models` 切换
 
 省钱的核心不是找到一个万能模型，而是不要让昂贵模型做廉价任务。
 
-| 任务 | 推荐工具或模型 |
-| --- | --- |
-| 查找文件、解释代码、改文档 | OpenCode/Claude Code + 低价模型 |
-| 小型 Bug、补单测、常规需求 | Codex Plus 或 DeepSeek V4 Flash |
-| 跨模块重构、复杂调试 | Codex 强推理模型、DeepSeek V4 Pro、MiMo 2.5 Pro |
-| 极难问题、要求最高成功率 | 原生 Claude Code 或 Codex 高推理档 |
-| 超长资料和仓库阅读 | Gemini CLI、DeepSeek/MiMo 百万上下文 |
-| 批量自动化 | `codex exec`、Claude Code `-p`、OpenCode Headless |
+| 任务                       | 推荐工具或模型                                    |
+| -------------------------- | ------------------------------------------------- |
+| 查找文件、解释代码、改文档 | OpenCode/Claude Code + 低价模型                   |
+| 小型 Bug、补单测、常规需求 | Codex Plus 或 DeepSeek V4 Flash                   |
+| 跨模块重构、复杂调试       | Codex 强推理模型、DeepSeek V4 Pro、MiMo 2.5 Pro   |
+| 极难问题、要求最高成功率   | 原生 Claude Code 或 Codex 高推理档                |
+| 超长资料和仓库阅读         | Gemini CLI、DeepSeek/MiMo 百万上下文              |
+| 批量自动化                 | `codex exec`、Claude Code `-p`、OpenCode Headless |
 
 一个实用原则是：
 

@@ -20,8 +20,6 @@ OpenCode 是一个开源的 AI 编码 Agent。它可以在终端中读取项目�
 4. 通过一段提示词，让 OpenCode 自行安装 Superpowers；
 5. 学会常用工作流、权限控制和故障排查。
 
-> 本文信息核验于 **2026 年 7 月 10 日**。OpenCode、DeepSeek 模型和 Superpowers 更新较快，遇到差异时应以文末官方链接为准。
-
 ## 一、先理解 OpenCode 的工作方式
 
 OpenCode 不是一个大模型，也不是模型代理商。它更像是运行在本地的 Agent 外壳：
