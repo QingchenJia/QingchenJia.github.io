@@ -3,7 +3,7 @@ title: QKKDecrypt多平台音乐特殊格式转换教程
 typora-root-url: QKKDecrypt多平台音乐特殊格式转换教程
 date: 2026-07-15 12:37:23
 categories:
-    - 开发工具
+    - 进阶技巧
 tags:
     - QKKDecrypt
     - 音频格式转换

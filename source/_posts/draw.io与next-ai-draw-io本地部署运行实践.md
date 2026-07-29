@@ -3,7 +3,7 @@ title: draw.io与next-ai-draw-io本地部署运行实践
 typora-root-url: draw.io与next-ai-draw-io本地部署运行实践
 date: 2026-05-18 15:20:39
 categories:
-    - 开发工具
+    - 进阶技巧
 tags:
     - draw.io
     - next-ai-draw-io
@@ -26,11 +26,11 @@ tags:
 
 常见使用入口有三种：
 
-| 方式 | 入口 | 适合场景 |
-| --- | --- | --- |
-| 在线版 | `https://app.diagrams.net` | 临时绘图、无需安装、快速导出 |
-| 桌面版 | `https://get.diagrams.net` | 离线绘图、本地文件管理 |
-| Docker版 | `jgraph/drawio`镜像 | 内网部署、团队统一访问、减少外部依赖 |
+| 方式     | 入口                       | 适合场景                             |
+| -------- | -------------------------- | ------------------------------------ |
+| 在线版   | `https://app.diagrams.net` | 临时绘图、无需安装、快速导出         |
+| 桌面版   | `https://get.diagrams.net` | 离线绘图、本地文件管理               |
+| Docker版 | `jgraph/drawio`镜像        | 内网部署、团队统一访问、减少外部依赖 |
 
 开发者常用`draw.io`绘制以下内容：
 
@@ -70,14 +70,14 @@ tags:
 
 本地运行前建议准备以下环境：
 
-| 环境 | 说明 |
-| --- | --- |
-| Git | 用于拉取项目源码 |
-| Node.js | 建议使用`Node.js 20`或更高版本 |
-| npm | 项目默认使用`npm install`安装依赖 |
-| Docker | 可选，用于容器方式运行 |
+| 环境           | 说明                                           |
+| -------------- | ---------------------------------------------- |
+| Git            | 用于拉取项目源码                               |
+| Node.js        | 建议使用`Node.js 20`或更高版本                 |
+| npm            | 项目默认使用`npm install`安装依赖              |
+| Docker         | 可选，用于容器方式运行                         |
 | Docker Compose | 可选，用于同时运行`draw.io`和`next-ai-draw-io` |
-| AI模型API Key | 至少准备一个可用模型提供商的API Key |
+| AI模型API Key  | 至少准备一个可用模型提供商的API Key            |
 
 检查基础环境：
 
@@ -312,26 +312,26 @@ DEEPSEEK_BASE_URL=https://api.deepseek.com/v1
 
 ```yaml
 services:
-  drawio:
-    image: jgraph/drawio:latest
-    container_name: drawio
-    restart: unless-stopped
-    ports:
-      - "8080:8080"
+    drawio:
+        image: jgraph/drawio:latest
+        container_name: drawio
+        restart: unless-stopped
+        ports:
+            - "8080:8080"
 
-  next-ai-draw-io:
-    build:
-      context: .
-      args:
-        - NEXT_PUBLIC_DRAWIO_BASE_URL=http://localhost:8080
-    container_name: next-ai-draw-io
-    restart: unless-stopped
-    ports:
-      - "3000:3000"
-    env_file:
-      - .env
-    depends_on:
-      - drawio
+    next-ai-draw-io:
+        build:
+            context: .
+            args:
+                - NEXT_PUBLIC_DRAWIO_BASE_URL=http://localhost:8080
+        container_name: next-ai-draw-io
+        restart: unless-stopped
+        ports:
+            - "3000:3000"
+        env_file:
+            - .env
+        depends_on:
+            - drawio
 ```
 
 启动服务：
@@ -351,14 +351,14 @@ http://localhost:3000
 
 ```yaml
 args:
-  - NEXT_PUBLIC_DRAWIO_BASE_URL=http://服务器IP:8080
+    - NEXT_PUBLIC_DRAWIO_BASE_URL=http://服务器IP:8080
 ```
 
 如果使用域名和反向代理，也可以写成：
 
 ```yaml
 args:
-  - NEXT_PUBLIC_DRAWIO_BASE_URL=https://drawio.example.com
+    - NEXT_PUBLIC_DRAWIO_BASE_URL=https://drawio.example.com
 ```
 
 修改该地址后，需要重新构建：
@@ -389,21 +389,21 @@ OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxx
 
 ```json
 {
-  "providers": [
-    {
-      "name": "OpenAI Production",
-      "provider": "openai",
-      "models": ["gpt-4o", "gpt-4o-mini"],
-      "default": true
-    },
-    {
-      "name": "DeepSeek",
-      "provider": "deepseek",
-      "models": ["deepseek-chat"],
-      "apiKeyEnv": "DEEPSEEK_API_KEY",
-      "baseUrlEnv": "DEEPSEEK_BASE_URL"
-    }
-  ]
+    "providers": [
+        {
+            "name": "OpenAI Production",
+            "provider": "openai",
+            "models": ["gpt-4o", "gpt-4o-mini"],
+            "default": true
+        },
+        {
+            "name": "DeepSeek",
+            "provider": "deepseek",
+            "models": ["deepseek-chat"],
+            "apiKeyEnv": "DEEPSEEK_API_KEY",
+            "baseUrlEnv": "DEEPSEEK_BASE_URL"
+        }
+    ]
 }
 ```
 
@@ -617,12 +617,12 @@ AI会生成一版`draw.io`图表，并在画布中展示。此时建议先看结
 
 ```json
 {
-  "mcpServers": {
-    "drawio": {
-      "command": "npx",
-      "args": ["@next-ai-drawio/mcp-server@latest"]
+    "mcpServers": {
+        "drawio": {
+            "command": "npx",
+            "args": ["@next-ai-drawio/mcp-server@latest"]
+        }
     }
-  }
 }
 ```
 
