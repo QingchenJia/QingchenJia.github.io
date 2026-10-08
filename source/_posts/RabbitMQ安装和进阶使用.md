@@ -3,7 +3,7 @@ title: RabbitMQ安装和进阶使用
 typora-root-url: RabbitMQ安装和进阶使用
 date: 2025-02-06 13:53:53
 categories:
-    - 服务部署
+    - 后端开发
 tags:
     - RabbitMQ
     - 消息队列

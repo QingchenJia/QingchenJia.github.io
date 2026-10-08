@@ -3,7 +3,7 @@ title: HypoMux多网卡聚合工具推荐与使用教程
 typora-root-url: HypoMux多网卡聚合工具推荐与使用教程
 date: 2026-10-07 23:07:26
 categories:
-    - 开发工具
+    - 网络应用
 tags:
     - HypoMux
     - 网络工具

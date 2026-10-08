@@ -3,7 +3,7 @@ title: 稳定访问GitHub网站的两种方法
 typora-root-url: 稳定访问GitHub网站的两种方法
 date: 2026-08-04 16:00:05
 categories:
-    - 开发工具
+    - 网络应用
 tags:
     - GitHub
     - Steam++

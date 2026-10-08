@@ -3,7 +3,7 @@ title: iPhone通过USB给Windows电脑共享网络教程
 typora-root-url: iPhone通过USB给Windows电脑共享网络教程
 date: 2026-07-29 19:05:13
 categories:
-    - 进阶技巧
+    - 网络应用
 tags:
     - iPhone
     - Windows

@@ -3,7 +3,7 @@ title: 使用Claude Code基于ppt-master生成PPT
 typora-root-url: 使用Claude Code基于ppt-master生成PPT
 date: 2026-05-21 10:26:33
 categories:
-    - 进阶技巧
+    - 效率工具
 tags:
     - ClaudeCode
     - Codex
