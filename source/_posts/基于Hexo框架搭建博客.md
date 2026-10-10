@@ -22,9 +22,13 @@ tags:
 
 ![](../基于Hexo框架搭建博客/Git.jpg)
 
+_图 1：Git 官方下载页面，可选择 Windows 版本的安装包。_
+
 推荐使用`nvm`进行`node.js`的管理，方便对不同版本的`node`进行切换，点击右下角`Releases`，可根据需求进行不同版本的安装，下载后默认操作即可完成安装。
 
 ![](../基于Hexo框架搭建博客/nvm.jpg)
+
+_图 2：nvm 的项目页面，可通过 Releases 获取 Windows 版本的安装文件。_
 
 打开终端，进行以下指令操作即可完成对应版本的`node.js`的安装。
 
@@ -64,6 +68,8 @@ theme: redefine
 具体细则可查看`Redefine`主题的官方文档，对基本、首页、文章和页脚均做了详细的配置说明。
 
 ![](../基于Hexo框架搭建博客/Redefine.jpg)
+
+_图 3：Redefine 主题官方文档首页，提供快速开始和主题配置说明。_
 
 #### 4.进行个性化配置
 
@@ -109,6 +115,8 @@ home_banner:
 
 ![](../基于Hexo框架搭建博客/repo.jpg)
 
+_图 4：GitHub 新建仓库页面，仓库名按“用户名.github.io”填写并设为公开。_
+
 推送至远程仓库之前，先在本地部署，浏览一下是否符合要求。
 
 ```shell
@@ -121,6 +129,8 @@ hexo s 	#也可以写作hexo server，部署至本地浏览
 为使GitHub-Page能够在推送完成后根据最新仓库内容即时重新部署后台服务，进入仓库`Settings-Pages-Source`选择`GitHub Actions`。
 
 ![](../基于Hexo框架搭建博客/Setting.jpg)
+
+_图 5：GitHub Pages 设置页面，通过 Source 选择 GitHub Actions 作为部署来源。_
 
 建立`.github/workflows/pages.yml`，内容如下，填写完毕后，项目仓库将会根据如下配置进行部署发布。
 

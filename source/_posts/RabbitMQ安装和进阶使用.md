@@ -24,6 +24,8 @@ tags:
 
 ![](../RabbitMQ安装和进阶使用/RabbitMQ-DockerImage.png)
 
+_图 1：Docker Hub 中的 RabbitMQ 镜像页面，用于查看镜像及版本信息。_
+
 执行镜像拉取命令，默认为拉取最新版本`Tag`。
 
 ```bash
@@ -45,6 +47,8 @@ docker run -e RABBITMQ_DEFAULT_USER=rabbitmq -e RABBITMQ_DEFAULT_PASS=rabbitmq -
 通过浏览器访问`http://192.168.19.130:15672`即可进入`RabbitMQ`控制台，成功登陆后进入管理界面。
 
 ![](../RabbitMQ安装和进阶使用/RabbitMQ-WebPage.png)
+
+_图 2：RabbitMQ 管理控制台，可通过顶部菜单管理连接、交换机、队列和用户。_
 
 进入`Admin`菜单栏可创建新用户，针对不同项目可对应创建不同用户与虚拟机。其他用户对各自的虚拟机具有足够的开发权限，可对通过`Exchanges`和`Queues`菜单栏针对消息交换机和消息队列进行业务配置。
 
@@ -336,6 +340,8 @@ public class RabbitmqConfig {
 特殊业务环境下，需要向`RabbitMQ`中发送延迟消息。传统的延迟消息需要借助死信交换机，实现起来相对麻烦。`RabbitMQ`提供了一个延迟消息插件`DelayExchange`来实现相同的效果，能够大幅度减少消息交换机和消息队列的多余配置。
 
 ![](../RabbitMQ安装和进阶使用/DelayMessage-Plugin.png)
+
+_图 3：RabbitMQ 延迟消息插件项目页面，可进入 Releases 下载插件文件。_
 
 访问`DelayExchange`插件的仓库，通过`Release`下载插件文件。
 

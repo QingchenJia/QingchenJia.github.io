@@ -24,6 +24,8 @@ tags:
 
 ![](../Nacos微服务注册中心Docker部署/AliyunMirror.png)
 
+_图 1：阿里云 Docker CE 镜像页面，提供 Docker 安装与镜像源配置说明。_
+
 ##### 2）完成必要准备工作
 
 安装必要的一些系统工具。
@@ -124,6 +126,8 @@ MYSQL_SERVICE_DB_PARAM=characterEncoding=utf8&connectTimeout=1000&socketTimeout=
 
 ![](../Nacos微服务注册中心Docker部署/NacosGitHubRelease.png)
 
+_图 2：Nacos 的 GitHub Releases 页面，可下载对应版本的发行包并获取数据库初始化文件。_
+
 通过`Navicat`连接至`MySQL`服务后，通过运行`SQL`文件操作，将`nacos`数据库文件一键导入。
 
 ##### 3）部署Nacos
@@ -138,15 +142,21 @@ docker run -d --name nacos --env-file ./custom.env -p 8848:8848 -p 9848:9848 -p 
 
 ![](../Nacos微服务注册中心Docker部署/DockerHubRepo.png)
 
+_图 3：Docker Hub 中的 Nacos 镜像仓库，用于查找可用的镜像版本标签。_
+
 #### 4.访问Nacos网页端
 
 打开浏览器访问`http:192.168.19.130:8848/nacos`，即可成功访问。
 
 ![](../Nacos微服务注册中心Docker部署/NacosPage-1.png)
 
+_图 4：Nacos 控制台登录页面，输入账号和密码后进入管理界面。_
+
 账号密码均为`nacos`，登陆成功后可以检索全部服务。
 
 ![](../Nacos微服务注册中心Docker部署/NacosPage-2.png)
+
+_图 5：Nacos 登录后的配置管理页面，左侧菜单提供配置、服务和权限等管理入口。_
 
 ### 三、写在最后
 

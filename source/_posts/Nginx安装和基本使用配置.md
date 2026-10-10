@@ -28,9 +28,13 @@ tags:
 
 ![](../Nginx安装和基本使用配置/Nginx-GitHub.png)
 
+_图 1：Nginx 的 GitHub 仓库页面，可通过 Releases 入口查找发布版本。_
+
 下划至底部可下载文件部分，选择`Source Code`进行下载，格式选择`tar.gz`。
 
 ![](../Nginx安装和基本使用配置/Nginx-GitHub-Release.png)
+
+_图 2：Nginx 发布版本的下载区域，选择 tar.gz 格式的源码归档。_
 
 ##### 2）上传源码包至Linux系统
 
@@ -146,6 +150,8 @@ systemctl stop firewalld
 成功访问后显示如下页面。
 
 ![](../Nginx安装和基本使用配置/Nginx-Web-Index-html.jpg)
+
+_图 3：Nginx 默认欢迎页面，用于确认服务启动后能够通过浏览器访问。_
 
 ##### 4）关闭服务和重新加载服务
 

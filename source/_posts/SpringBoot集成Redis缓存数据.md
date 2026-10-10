@@ -22,9 +22,13 @@ tags:
 
 ![](../SpringBoot集成Redis缓存数据/Redis-Windows.png)
 
+_图 1：Microsoft Archive 维护的 Redis Windows 版本仓库，可通过 Releases 下载发行包。_
+
 下载项目`Release`发布中合适版本后，解压文件内容如下。双击运行`redis-server.exe`文件即可启动`Redis`服务，启动前请注意`6379`端口的占用情况。然后可通过运行`redis-cli.exe`即`Redis`客户端程序，进行数据库操作。
 
 ![](../SpringBoot集成Redis缓存数据/Redis-path.png)
+
+_图 2：Redis Windows 发行包解压后的文件目录，包含服务端和命令行客户端程序。_
 
 #### 2.导入相关依赖
 
@@ -45,6 +49,8 @@ tags:
 项目的访问地址为`https://github.com/qishibo/AnotherRedisDesktopManager`，仍然通过`Release`发布下载安装包，一路默认选择即可快速完成安装。
 
 ![](../SpringBoot集成Redis缓存数据/AnotherRedisDesktopManager.png)
+
+_图 3：AnotherRedisDesktopManager 连接 Redis 后的管理界面，展示服务器、内存和连接状态。_
 
 #### 4.编写项目配置文件
 
