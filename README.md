@@ -237,10 +237,12 @@ npm run deploy
 
 如果发现文章内容错误、失效链接或构建问题，欢迎通过 Issue 反馈；提交改动时建议：
 
-1. 从最新的 `master` 分支创建独立分支；
-2. 将单次提交聚焦于一个主题，并使用清晰的提交说明；
+1. 直接在 `master` 主分支上编辑、提交和推送，操作前检查工作区并同步远程变更；除非明确要求，不另建分支或拉取请求；
+2. 将单次提交聚焦于一个主题，提交说明采用 `type(scope): description` 格式，例如 `docs(7zip): add Windows compression guide`；
 3. 提交前执行 `npm run build`，确认没有 Hexo 渲染错误；
 4. 不提交 `public/`、`db.json`、`node_modules/` 等生成内容。
+
+本项目的 Codex 会话规则统一维护在仓库根目录的 [`AGENTS.md`](./AGENTS.md) 中，涵盖写作前参考已有文章、读取机器当前时间、单一分类、最多三个标签及主分支操作等要求。在本项目中启动新的 Codex 会话时会自动读取该文件。
 
 ## 致谢
 
