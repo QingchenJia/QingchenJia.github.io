@@ -209,6 +209,8 @@ npm run build
 
 主题搜索、评论、RSS、Mermaid 和 CDN 等能力目前未启用；若要开启，请先安装配置注释中标明的依赖，再修改对应开关。
 
+数学公式使用 `hexo-filter-mathjax` 在构建时渲染，不依赖浏览器下载公式渲染脚本。需要公式的文章在 Front Matter 中添加 `mathjax: true`，正文使用独占行的 `$$` 包围 LaTeX 公式块；单美元符号公式识别默认关闭。
+
 ## 部署说明
 
 ### GitHub Pages 自动部署（推荐）

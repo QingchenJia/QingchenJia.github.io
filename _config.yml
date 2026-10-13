@@ -101,6 +101,11 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: redefine
 
+# Render display math only for posts with `mathjax: true` in front matter.
+mathjax:
+    single_dollars: false
+    every_page: false
+
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
