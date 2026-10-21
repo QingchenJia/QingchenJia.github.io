@@ -444,6 +444,16 @@ plugins:
               url: /assets/music/take-me-hand.mp3
               cover: https://img2.kuwo.cn/star/albumcover/120/s4s52/46/1549652837.jpg
               lrc: /assets/music/take-me-hand.lrc
+            - name: 落
+              artist: 艾辰
+              url: /assets/music/luo.mp3
+              cover: https://img2.kuwo.cn/star/albumcover/120/50/7/2741405889.jpg
+              lrc: /assets/music/luo.lrc
+            - name: Call You Tonight
+              artist: Whitney Houston
+              url: /assets/music/call-you-tonight.mp3
+              cover: https://img2.kuwo.cn/star/albumcover/120/99/12/4143059913.jpg
+              lrc: /assets/music/call-you-tonight.lrc
     #      - name: # audio name
     #        artist: # audio artist
     #        url: # audio url
