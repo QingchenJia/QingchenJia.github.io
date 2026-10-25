@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">四款远程软件的场景选择</title>
+  <desc id="desc">UU远程适合个人高清远控与游戏；向日葵适合软硬件配套与运维；ToDesk适合按需选择性能与功能；TeamViewer适合商业技术支持与已有协作体系。本图不是性能排名。</desc>
+  <defs><style>text{font-family:'Microsoft YaHei','PingFang SC',sans-serif;fill:#172b43}.eyebrow{font-size:17px;letter-spacing:3px;fill:#60768b}.title{font-size:36px;font-weight:700}.name{font-size:29px;font-weight:700}.label{font-size:24px;font-weight:600}.body{font-size:21px;fill:#465c73}.small{font-size:18px;fill:#60768b}</style></defs>
+  <rect width="1200" height="760" fill="#f3f6fa"/>
+  <text x="52" y="54" class="eyebrow">REMOTE ACCESS / 场景选择</text>
+  <text x="52" y="110" class="title">先看你要做什么，再选远程工具</text>
+  <text x="52" y="151" class="body">个人体验、软硬件配套、付费权益与企业管理，需要不同的比较重点。</text>
+  <rect x="52" y="191" width="536" height="224" rx="20" fill="#e5f4ef" stroke="#9acbb9"/>
+  <rect x="52" y="191" width="8" height="224" rx="4" fill="#168267"/>
+  <text x="82" y="239" class="name">网易 UU 远程</text>
+  <text x="82" y="281" class="label">个人高清远控 · 远程游戏</text>
+  <text x="82" y="323" class="body">免费尝试高清、高帧与文件传输</text>
+  <text x="82" y="358" class="body">适合电脑互控、手机和平板控制电脑</text>
+  <text x="82" y="391" class="small">先核对设备支持；免费定位不等于永久承诺</text>
+  <rect x="612" y="191" width="536" height="224" rx="20" fill="#fff" stroke="#d9e2ed"/>
+  <text x="642" y="239" class="name">向日葵</text>
+  <text x="642" y="281" class="label">软硬件配套 · 现场与企业运维</text>
+  <text x="642" y="323" class="body">开机硬件、远控与管理方案一起考察</text>
+  <text x="642" y="358" class="body">已有贝锐设备时，可减少方案衔接成本</text>
+  <text x="642" y="391" class="small">会员、硬件、商业授权与选配能力分别核算</text>
+  <rect x="52" y="439" width="536" height="224" rx="20" fill="#fff" stroke="#d9e2ed"/>
+  <text x="82" y="487" class="name">ToDesk</text>
+  <text x="82" y="529" class="label">按需付费 · 性能与外设功能</text>
+  <text x="82" y="571" class="body">专业、游戏、设计和性能版分档选择</text>
+  <text x="82" y="606" class="body">有明确功能缺口时，再比较升级权益</text>
+  <text x="82" y="639" class="small">分清分辨率、帧率、带宽及插件的组合条件</text>
+  <rect x="612" y="439" width="536" height="224" rx="20" fill="#fff" stroke="#d9e2ed"/>
+  <text x="642" y="487" class="name">TeamViewer</text>
+  <text x="642" y="529" class="label">商业技术支持 · 已有协作体系</text>
+  <text x="642" y="571" class="body">客户已采用，或需要企业访问管理</text>
+  <text x="642" y="606" class="body">结合商业许可、集成与支持服务评估</text>
+  <text x="642" y="639" class="small">个人免费授权不覆盖工作用途</text>
+  <text x="52" y="718" class="small">依据官方产品定位整理 · 定性选型示意，不是实测排名 · 详细条件见正文与官方资料</text>
+</svg>

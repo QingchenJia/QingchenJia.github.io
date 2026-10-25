@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">远程控制的画面与输入链路</title>
+  <desc id="desc">被控电脑采集与编码画面，经直连或中继传到主控设备解码显示；键盘鼠标指令反向返回。主机性能、网络和主控设备共同影响体验。</desc>
+  <defs>
+    <style>text{font-family:'Microsoft YaHei','PingFang SC',sans-serif;fill:#172b43}.title{font-size:36px;font-weight:700}.label{font-size:25px;font-weight:600}.body{font-size:21px;fill:#465c73}.small{font-size:18px;fill:#60768b}</style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 1 L8 5 L0 9" fill="none" stroke="#168267" stroke-width="2"/></marker>
+  </defs>
+  <rect width="1200" height="700" fill="#f3f6fa"/>
+  <text x="52" y="66" class="small">REMOTE ACCESS / 体验由整条链路决定</text>
+  <text x="52" y="122" class="title">“连得快”只是开始，“用得顺”要看全程</text>
+  <text x="52" y="165" class="body">远端负责运行应用，本地负责显示画面与发送操作。</text>
+  <rect x="52" y="227" width="304" height="204" rx="20" fill="#fff" stroke="#cfdae6"/>
+  <text x="82" y="276" class="label">被控电脑</text>
+  <text x="82" y="319" class="body">运行应用 / 采集画面</text>
+  <text x="82" y="356" class="body">视频编码 / 发出画面</text>
+  <text x="82" y="399" class="small">关注显卡、编码负载与上行</text>
+  <rect x="448" y="227" width="304" height="204" rx="20" fill="#e5f4ef" stroke="#9acbb9"/>
+  <text x="478" y="276" class="label">网络传输</text>
+  <text x="478" y="319" class="body">可能直连，也可能中继</text>
+  <text x="478" y="356" class="body">带宽 / 延迟 / 抖动 / 丢包</text>
+  <text x="478" y="399" class="small">网络路径影响持续连接体验</text>
+  <rect x="844" y="227" width="304" height="204" rx="20" fill="#fff" stroke="#cfdae6"/>
+  <text x="874" y="276" class="label">主控设备</text>
+  <text x="874" y="319" class="body">接收解码 / 显示画面</text>
+  <text x="874" y="356" class="body">键盘 / 鼠标 / 触控输入</text>
+  <text x="874" y="399" class="small">关注解码能力、屏幕与外设</text>
+  <path d="M368 311 H432" stroke="#168267" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M764 311 H828" stroke="#168267" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M996 447 V493 H204 V447" fill="none" stroke="#168267" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="445" y="471" width="310" height="44" rx="22" fill="#f3f6fa"/>
+  <text x="600" y="500" text-anchor="middle" class="body">操作指令返回被控电脑</text>
+  <rect x="52" y="551" width="1096" height="79" rx="16" fill="#e7edf5"/>
+  <text x="80" y="583" class="body">比较方法：同一设备、同一网络、相近画质，观察连续操作与重连表现。</text>
+  <text x="80" y="613" class="small">最高画质与最高帧率不一定能同时开启；功能上限也不是实际到达值。</text>
+  <text x="52" y="674" class="small">远程控制的一般原理示意 · 不代表任何厂商披露的内部架构或性能数据</text>
+</svg>
