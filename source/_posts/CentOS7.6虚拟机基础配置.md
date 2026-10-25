@@ -22,7 +22,7 @@ tags:
 
 在创建虚拟机配置文件时，网络适配器选择`NAT`模式。
 
-![](../CentOS7.6虚拟机基础配置/CentOS7.6VM-1.png)
+![](../CentOS7.6虚拟机基础配置/centos-vmware-nat-network-adapter.png)
 
 _图 1：VMware 虚拟机网络适配器设置，网络连接选择 NAT 模式。_
 
@@ -32,7 +32,7 @@ _图 1：VMware 虚拟机网络适配器设置，网络连接选择 NAT 模式�
 
 点击`VMware Workstation`菜单栏中编辑->虚拟网络编辑器->`NAT`设置，查看`NAT`模式下的详细参数。
 
-![](../CentOS7.6虚拟机基础配置/CentOS7.6VM-2.png)
+![](../CentOS7.6虚拟机基础配置/centos-vmware-nat-settings.png)
 
 _图 2：虚拟网络编辑器中的 NAT 设置，用于查看子网、子网掩码和网关地址。_
 
@@ -123,7 +123,7 @@ systemctl enable sshd
 
 使用`FinalShell`进行`SSH`连接，名称可任意编辑，主机填写成功配置的静态`IP`地址，端口号默认为22。认证方法采用密码，使用管理员密码以`root`身份连接。
 
-![](../CentOS7.6虚拟机基础配置/CentOS7.6VM-3.png)
+![](../CentOS7.6虚拟机基础配置/centos-ssh-finalshell-connection.png)
 
 _图 3：FinalShell 的 SSH 连接配置，填写虚拟机地址、端口及登录凭据。_
 
@@ -133,7 +133,7 @@ _图 3：FinalShell 的 SSH 连接配置，填写虚拟机地址、端口及登�
 
 找到`centos`，访问其镜像源配置。
 
-![](../CentOS7.6虚拟机基础配置/CentOS7.6VM-4.png)
+![](../CentOS7.6虚拟机基础配置/centos-aliyun-yum-mirror.png)
 
 _图 4：阿里云 CentOS 镜像页面，用于查找 yum 软件源配置说明。_
 
