@@ -70,7 +70,7 @@ Get-FileHash "$env:USERPROFILE\Downloads\DLSS5-Swapper-Setup-2.2.9.exe" -Algorit
 
 进入 **Games（游戏）** 页面，先查看软件是否已经识别到本机游戏。项目支持 Steam、Epic、GOG，以及现代 Xbox Game Pass 游戏目录，也允许手动添加。
 
-![DLSS5-Swapper游戏库及添加、重新扫描入口](../DLSS5-Swapper安装与使用教程/03-library.png)
+![DLSS5-Swapper游戏库及添加、重新扫描入口](../DLSS5-Swapper安装与使用教程/library.png)
 
 _图 1：项目提供的游戏库截图。右上角是添加和重新扫描入口，上方可以按渲染接口、DLSS 状态和附加组件筛选。_
 
@@ -89,7 +89,7 @@ _图 1：项目提供的游戏库截图。右上角是添加和重新扫描入�
 
 打开游戏详情后，先看 **Executable（可执行文件）**、**Architecture（架构）** 和 **Rendering API（渲染接口）**，再选择后端和安装路线。
 
-![DLSS5-Swapper游戏详情中的渲染后端、安装路线和恢复按钮](../DLSS5-Swapper安装与使用教程/04-game.png)
+![DLSS5-Swapper游戏详情中的渲染后端、安装路线和恢复按钮](../DLSS5-Swapper安装与使用教程/game.png)
 
 _图 2：游戏详情示例。中部用于选择后端和路线，下方显示组件状态，底部提供安装／应用变更及恢复入口。_
 
@@ -134,7 +134,7 @@ _图 2：游戏详情示例。中部用于选择后端和路线，下方显示�
 
 在支持的配置中，可以打开软件的 **Overlay** 页面，检查是否启用随 DLSS 安装悬浮面板，再选择喜欢的主题。
 
-![DLSS5-Swapper悬浮面板主题与控制项预览](../DLSS5-Swapper安装与使用教程/07-overlay.png)
+![DLSS5-Swapper悬浮面板主题与控制项预览](../DLSS5-Swapper安装与使用教程/overlay.png)
 
 _图 3：Overlay 页面的主题预览，并非游戏实机效果对比。旧截图显示的快捷键为 F10；当前 README 给出的默认键为 F8，若已自定义则以自己的设置为准。_
 
@@ -168,7 +168,7 @@ Multipass 处理没有原生 DLSS 的游戏时，当前版本日志还会提示�
 3. 确认恢复操作，等待日志报告完成。
 4. 再次启动游戏，检查是否恢复正常。
 
-![DLSS5-Swapper右键菜单中的恢复原始文件入口](../DLSS5-Swapper安装与使用教程/12-games-menu.png)
+![DLSS5-Swapper右键菜单中的恢复原始文件入口](../DLSS5-Swapper安装与使用教程/games-menu.png)
 
 _图 4：右键菜单提供打开游戏目录、重新扫描和 Restore originals 等入口。截图中的游戏仅用于展示界面，不代表适合安装 Mod。_
 

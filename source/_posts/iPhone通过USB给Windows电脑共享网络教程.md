@@ -2,6 +2,7 @@
 title: iPhone通过USB给Windows电脑共享网络教程
 typora-root-url: iPhone通过USB给Windows电脑共享网络教程
 date: 2026-07-29 19:05:13
+updated: 2026-10-25 23:47:45
 categories:
     - 网络应用
 tags:
@@ -14,13 +15,7 @@ tags:
 
 Windows电脑临时断网、没有无线网卡，或者所在环境不方便使用Wi-Fi时，可以用数据线把iPhone的蜂窝网络共享给电脑。与无线热点相比，USB共享通常更稳定，也能在使用网络的同时给手机充电。
 
-正常情况下，整个过程只需要三步：
-
-1. 在Windows中安装Apple设备支持软件和驱动；
-2. 在iPhone中打开“个人热点”；
-3. 用支持数据传输的USB线连接并信任电脑。
-
-真正容易卡住的是“电脑本来就没有网络，而且尚未安装Apple驱动”的情况。此时Windows可能只能把iPhone识别成相机，无法出现`Apple Mobile Device Ethernet`网络适配器。本文除了介绍常规连接方法，也会参考[iPhone给无网环境的Windows通过有线共享网络](https://blog.leao9203.cn/post/20251204234242/)中的思路，给出离线安装驱动和应急传输驱动包的方法。
+真正容易卡住的是“电脑本来就没有网络，而且尚未安装Apple驱动”的情况。此时Windows可能只能读取iPhone照片，无法出现`Apple Mobile Device Ethernet`网络适配器。**本文重点介绍离线安装：先把完整驱动包送到电脑，再安装设备支持组件和网卡驱动，最后开启个人热点。**
 
 ### 二、使用前的准备
 
@@ -45,316 +40,216 @@ iPhone通过USB共享网络时，Windows需要先识别两个部分：
 | Apple移动设备USB驱动    | 让Windows正确识别iPhone | 设备管理器中能看到Apple移动设备                |
 | Apple移动设备以太网驱动 | 创建USB虚拟网卡         | 网络适配器中出现`Apple Mobile Device Ethernet` |
 
-连接成功后的数据链路可以概括为：
-
-```text
-Windows应用
-    ↓
-Apple Mobile Device Ethernet虚拟网卡
-    ↓ USB数据线
-iPhone个人热点
-    ↓
-运营商蜂窝网络
-```
-
 因此，“电脑能看到iPhone照片”并不代表网络共享驱动已经正常。Windows通过PTP协议读取照片时，只需要相机相关能力；USB网络共享还需要Apple移动设备以太网驱动。
 
 ### 四、常规方法：安装Apple设备并连接
 
-电脑目前可以联网时，优先使用本节的方法。它比手动下载和安装旧版驱动更简单，也更容易获得与当前Windows、iOS版本匹配的组件。
+电脑可以联网时，按照[Apple官方说明](https://support.apple.com/zh-cn/111785)完成下面几步：
 
-#### 1. 安装Apple设备应用
+1. 从Microsoft Store安装[Apple设备](https://apps.microsoft.com/detail/9np83lwlpz9k)，或从Apple官方渠道安装Windows版iTunes。
+2. 在iPhone中打开“蜂窝数据”，进入“设置 → 个人热点”，开启“允许其他人加入”。
+3. 用支持数据传输的USB线连接电脑，解锁iPhone，出现提示时点击“信任”并输入锁屏密码。
+4. 等待Windows识别网卡，再打开网页验证联网。需要查看适配器时，按`Win`+`R`，输入`ncpa.cpl`，检查描述中包含`Apple Mobile Device Ethernet`的以太网连接。
 
-打开Microsoft Store，搜索并安装：
-
-```text
-Apple 设备
-```
-
-也可以在浏览器中打开Microsoft Store的[Apple Devices应用页面](https://apps.microsoft.com/detail/9np83lwlpz9k)。
-
-安装完成后，重新插拔iPhone。首次连接时，保持手机解锁，iPhone会弹出“要信任此电脑吗”，点击“信任”，然后输入锁屏密码。
-
-如果Microsoft Store无法使用，也可以从Apple官方渠道安装Windows版iTunes。Apple设备应用和新版iTunes都可以提供识别iPhone所需的相关组件。不要从不明软件下载站获取经过二次打包的安装程序。
-
-#### 2. 打开iPhone个人热点
-
-先确认蜂窝网络可以正常上网，然后依次进入：
-
-```text
-设置 → 蜂窝网络 → 打开“蜂窝数据”
-设置 → 个人热点 → 打开“允许其他人加入”
-```
-
-部分iOS版本也可以从“设置 → 蜂窝网络 → 个人热点”进入。USB连接本身不需要电脑输入热点密码，但建议仍然设置一个强度足够的无线局域网密码，防止附近设备通过Wi-Fi接入。
-
-#### 3. 使用USB线连接
-
-按照下面的顺序操作：
-
-1. 解锁iPhone并停留在主屏幕；
-2. 用数据线连接iPhone和Windows电脑；
-3. 出现信任提示时选择“信任”；
-4. 等待Windows完成设备和网卡初始化；
-5. 打开浏览器测试网络。
-
-通常不需要在Windows中手动拨号或创建连接。驱动正常加载后，系统会把iPhone识别成一个新的以太网网络。
-
-#### 4. 检查是否连接成功
-
-按`Win`+`R`，输入：
-
-```text
-ncpa.cpl
-```
-
-在“网络连接”窗口中，应该能看到一个新的以太网适配器。它的描述通常包含：
-
-```text
-Apple Mobile Device Ethernet
-```
-
-也可以打开PowerShell检查网卡：
-
-```powershell
-Get-NetAdapter | Where-Object InterfaceDescription -Like "*Apple*"
-```
-
-再检查IP配置：
-
-```powershell
-ipconfig
-```
-
-成功连接时，Apple虚拟网卡通常会自动取得类似`172.20.10.x`的IPv4地址。实际地址可能因系统版本和网络状态而不同，判断成功与否应以网卡已连接且电脑能访问互联网为准。
+如果电脑没有任何可用网络，无法下载应用或驱动，继续按下一章操作。
 
 ### 五、电脑完全离线时安装驱动
 
-如果电脑没有Wi-Fi、没有有线网络，也没有安装过Apple设备组件，直接连接iPhone后可能只能看到照片目录。这时需要先把驱动包送到电脑，再离线安装。
+离线安装要解决两个问题：**准备完整的驱动文件，以及把它们传进电脑。** 有U盘时直接复制最方便；只有iPhone、电脑又只能读取照片时，可以把压缩包附加到PNG图片末尾，通过照片通道传输。
 
-推荐顺序如下：
+#### 1.确认系统和解压工具
 
-1. U盘或移动硬盘；
-2. 另一台电脑下载后通过局域网或刻录介质传输；
-3. iPhone上的云盘或文件应用配合另一种可用传输工具；
-4. 实在没有其他介质时，再使用后文的“图片附加压缩包”方法。
+下面的`AppleMobileDeviceSupport64.msi`及两套驱动按**Windows 10/11 x64，也就是Intel或AMD的64位系统**准备。可以在“设置 → 系统 → 系统信息（关于）”查看系统类型；ARM64设备不要直接套用这套x64驱动。
 
-#### 1. 在另一台联网电脑准备驱动
+离线电脑还需要能打开CAB、ZIP和图片附加包的解压工具，下面以[7-Zip](https://7-zip.org/download.html)为例。**如果电脑没有安装解压软件，用U盘传文件时要一并带上7-Zip安装程序；只有iPhone的照片传输路线，则需要电脑事先已有能读取图片附加包的工具。**
 
-参考原文章采用的离线方案，需要准备下面三部分内容，它们不是只保留几个`.inf`文件，也不是三选一：
+先根据手边设备选择路线：
 
-| 内容                    | 获取方式                      | 用途                            |
-| ----------------------- | ----------------------------- | ------------------------------- |
-| Apple移动设备支持程序   | 从Windows版iTunes安装包中提取 | 安装Apple移动设备服务和基础组件 |
-| Apple移动设备USB驱动    | 下载完整的CAB驱动包           | 让Windows通过USB正确识别iPhone  |
-| Apple移动设备以太网驱动 | 下载完整的CAB驱动包           | 创建USB网络共享所需的虚拟网卡   |
+| 手边条件                                     | 操作路线                                        |
+| -------------------------------------------- | ----------------------------------------------- |
+| 有另一台联网电脑和U盘                        | 按第2～4小节准备并复制驱动，再跳到第6小节安装   |
+| 只有iPhone和离线电脑，电脑已有解压工具       | 直接看第5小节，使用参考作者提供的图片包         |
+| 有联网电脑准备文件，但无法直接复制到目标电脑 | 按第2～3小节准备驱动，再按第5小节自行制作图片包 |
 
-首先，从Apple官方下载Windows版iTunes安装程序，用7-Zip等解压工具直接打开安装程序，而不是运行它，然后提取完整的`AppleMobileDeviceSupport64.msi`文件。
+#### 2.从iTunes安装包提取设备支持组件
 
-接着，参考开源项目[Apple Mobile Drivers Installer](https://github.com/NelloKudo/Apple-Mobile-Drivers-Installer)的离线说明，分别下载：
+在另一台能够联网的电脑上操作：
 
-- [Apple移动设备USB驱动](https://catalog.s.download.windowsupdate.com/d/msdownload/update/driver/drvs/2020/11/01d96dfd-2f6f-46f7-8bc3-fd82088996d2_a31ff7000e504855b3fa124bf27b3fe5bc4d0893.cab)
-- [Apple移动设备以太网驱动](https://catalog.s.download.windowsupdate.com/c/msdownload/update/driver/drvs/2017/11/netaapl_7503681835e08ce761c52858949731761e1fa5a1.cab)
+1. 从[Apple官方下载入口](https://www.apple.com/itunes/download/win64)获取Windows x64版iTunes安装程序。
+2. 右键安装程序，用7-Zip选择“打开压缩包”，**此时不需要运行iTunes安装向导**。
+3. 找到`AppleMobileDeviceSupport64.msi`，点击“提取”，保存到新建的`AppleDrivers`文件夹中。
 
-下载得到的是两个`.cab`文件。为它们分别创建独立目录，并使用7-Zip等工具执行“提取全部文件”，例如：
+![用7-Zip打开iTunes安装程序并提取AppleMobileDeviceSupport64.msi](../iPhone通过USB给Windows电脑共享网络教程/extract-itunes-support.png)
+
+_图1：提取红色箭头指向的设备支持组件。这里需要完整的MSI文件。_
+
+这个组件用于安装Apple移动设备支持服务和基础组件。USB驱动和网络驱动还要继续准备，不能只复制这个MSI就结束。
+
+#### 3.下载两套驱动并完整打包
+
+[Apple Mobile Drivers Installer项目](https://github.com/NelloKudo/Apple-Mobile-Drivers-Installer)提供了手动离线安装说明，所需CAB文件来自Microsoft的驱动下载服务器：
+
+| 文件                    | 下载地址                                                                                                                                                                                 | 解压到本文示例目录         |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| Apple USB驱动           | [下载USB驱动CAB](https://catalog.s.download.windowsupdate.com/d/msdownload/update/driver/drvs/2020/11/01d96dfd-2f6f-46f7-8bc3-fd82088996d2_a31ff7000e504855b3fa124bf27b3fe5bc4d0893.cab) | `AppleDrivers\AppleUSB`    |
+| Apple移动设备以太网驱动 | [下载以太网驱动CAB](https://catalog.s.download.windowsupdate.com/c/msdownload/update/driver/drvs/2017/11/netaapl_7503681835e08ce761c52858949731761e1fa5a1.cab)                           | `AppleDrivers\AppleTether` |
+
+1. 分别下载两个`.cab`文件，并在`AppleDrivers`下新建`AppleUSB`和`AppleTether`文件夹。
+2. 用7-Zip打开每个CAB，选择“提取”，把**全部文件**分别解压到对应目录。
+3. 确认USB驱动目录里有`AppleUsb.inf`，以太网驱动目录里有`netaapl64.inf`，同时保留各自的`.sys`、`.cat`、`.dll`等配套文件。
+4. 将整个`AppleDrivers`文件夹压缩为`AppleDrivers.zip`，便于一次传输。
+
+![两个CAB中的INF安装描述文件及配套驱动文件](../iPhone通过USB给Windows电脑共享网络教程/complete-driver-files.png)
+
+_图2：箭头标出两个INF安装入口，解压时仍需选择全部文件，不是只提取箭头指向的文件。_
+
+整理后的目录关系如下，文件名大小写不影响识别：
 
 ```text
 AppleDrivers
 ├─ AppleMobileDeviceSupport64.msi
 ├─ AppleUSB
 │  ├─ AppleUsb.inf
-│  ├─ 驱动程序文件（例如.sys）
-│  ├─ 驱动签名文件（例如.cat）
-│  └─ CAB中的其他全部文件
+│  ├─ AppleKmdfFilter.sys
+│  ├─ AppleLowerFilter.sys
+│  ├─ appleusb.cat
+│  └─ AppleUsbFilter.dll
 └─ AppleTether
    ├─ netaapl64.inf
-   ├─ 驱动程序文件（例如.sys）
-   ├─ 驱动签名文件（例如.cat）
-   └─ CAB中的其他全部文件
+   ├─ netaapl64.sys
+   ├─ netaapl64.cat
+   ├─ netaapl64.pdb
+   └─ WdfCoInstaller01009.dll
 ```
 
-上面的文件树只用于说明目录关系，实际文件名和数量应以CAB中提取出的内容为准。**必须保留每个CAB中的全部文件及其目录关系，不能只挑出`AppleUsb.inf`和`netaapl64.inf`进行打包。**
+上面列出的是配图中两套驱动的文件。下载包包含其他文件时也应全部保留，目录关系以实际CAB为准。**`.inf`只是安装说明，Windows还要读取同目录中的驱动代码和签名；仅打包两个INF无法完成安装。**
 
-`.inf`只是驱动的安装描述文件，负责告诉Windows应复制哪些文件、加载哪个服务以及如何注册设备。真正运行的驱动代码、数字签名和相关组件通常位于同目录的`.sys`、`.cat`、`.dll`等文件中。安装`.inf`时，Windows会按照其中记录的路径读取这些配套文件；如果只剩`.inf`，安装可能直接失败，也可能提示找不到指定文件、驱动包无效或无法验证签名。
-
-因此，应当把整个`AppleDrivers`目录压缩成`AppleDrivers.zip`，压缩包中至少包含完整的MSI文件，以及从两个CAB中分别提取出的**全部内容**。不同版本中的文件名、目录和签名可能发生变化，应以项目当前说明或Microsoft Update Catalog中的有效驱动为准，不要混用不同版本，也不要加入来源不明的驱动文件。
-
-#### 2. 将驱动包复制到离线电脑
-
-如果有U盘，直接复制`AppleDrivers.zip`即可，这是最稳妥的方法。
-
-复制完成后先计算校验值：
+在制作文件的电脑上，进入ZIP所在目录，记录校验值：
 
 ```powershell
 Get-FileHash .\AppleDrivers.zip -Algorithm SHA256
 ```
 
-把结果与制作驱动包时记录的SHA-256值比较。两边完全一致，才能说明传输过程没有损坏文件。
+SHA-256用于检查传输前后的文件是否一致。自行打包的ZIP需要使用自己记录的结果，不能拿其他包的校验值比较。
 
-#### 3. 从完整驱动目录安装
+#### 4.有U盘时直接复制
 
-先双击运行：
+1. 将`AppleDrivers.zip`复制到U盘，离线电脑缺少7-Zip时也带上它的安装程序。
+2. 在离线电脑上，将文件复制到本地文件夹，例如`C:\AppleOffline`。
+3. 在该文件夹打开PowerShell，运行上面的`Get-FileHash`命令，与制作时记录的结果比较。
+4. 结果一致后，将ZIP全部解压；不要直接在压缩包窗口里安装驱动。
 
-```text
-AppleMobileDeviceSupport64.msi
+完成后跳到第6小节。下面的图片传输用于没有U盘等可用传输方式的情况。
+
+#### 5.只有iPhone时，通过照片通道传输
+
+iPhone的“文件”应用里即使已经下载了ZIP，Windows的照片目录也不会直接显示它。参考文章使用的办法是制作“图种”：**把ZIP附加到PNG图片末尾，照片工具仍能显示图片，解压工具则读取后面的压缩内容。** 单纯将`.zip`改名为`.png`没有这个效果。
+
+**使用参考作者准备的图片包**
+
+如果身边没有另一台联网电脑，可以在iPhone的Safari中打开参考作者发布的图片包：
+
+- [图片包下载地址1：EdgeOne](https://cdn1.blog.leao9203.cn/share_file/20251204/Apple%E8%8B%B9%E6%9E%9C%E6%9C%89%E7%BA%BF%E9%A9%B1%E5%8A%A8.png)
+
+这个链接是参考作者整理的第三方驱动包。希望自己从Apple、Microsoft获取原始文件时，按前面的小节准备，再用下面的命令制作图片包。
+
+**自行制作图片包**
+
+在准备驱动的联网电脑上，将一张普通PNG图片命名为`cover.png`，与`AppleDrivers.zip`放在同一目录。在该目录打开PowerShell，执行：
+
+```powershell
+cmd /c copy /b "cover.png"+"AppleDrivers.zip" "AppleDrivers.png"
+Get-FileHash .\AppleDrivers.png -Algorithm SHA256
 ```
 
-接着，保持`AppleUSB`和`AppleTether`目录中的文件完整，不要把`.inf`单独移动到其他位置。分别找到`AppleUsb.inf`和`netaapl64.inf`，依次右键选择“安装”。此时虽然操作入口是`.inf`，Windows仍会读取它所在驱动目录中的其他配套文件。
+`copy /b`是Windows命令提示符中的二进制拼接命令，因此在PowerShell里通过`cmd /c`调用。命令中的文件名可按实际情况替换，输出文件不要与已有文件重名。
 
-也可以管理员身份打开PowerShell，进入解压后的`AppleDrivers`目录并执行：
+先用7-Zip打开生成的`AppleDrivers.png`，确认能看到驱动文件，再把它放到一个iPhone Safari可以直接打开的HTTPS下载地址，并记下刚计算出的SHA-256。
+
+![使用7-Zip打开附加了驱动压缩包的PNG图片](../iPhone通过USB给Windows电脑共享网络教程/open-image-archive.png)
+
+_图3：参考作者的图片包被7-Zip作为压缩包打开。图中把文件放在同一目录，本文自行整理时使用两个子目录，安装入口相同。_
+
+**保存到照片并复制到电脑**
+
+1. 在iPhone Safari中打开图片包地址，等待页面中的原图完整加载；参考作者的文件约38.5 MiB，不要在进度条尚未结束时保存。
+2. 长按图片，选择“存储到‘照片’”或“保存到照片”。不要保存本文中的步骤截图，要保存下载链接对应的原始图片包。
+3. 用数据线连接离线电脑，解锁iPhone，出现提示时点击“信任”并输入密码。
+4. 在Windows文件资源管理器中打开“此电脑 → Apple iPhone → Internal Storage”，进入最新的照片文件夹。
+5. 找到刚保存的PNG，复制到电脑本地。手机可能将它改名为`IMG_9012.PNG`一类的名称，可以结合缩略图、保存时间与文件大小确认。
+
+![Safari长按图片后保存到照片的菜单](../iPhone通过USB给Windows电脑共享网络教程/save-image-to-photos.png)
+
+_图4：等原始图片包加载完整后，再保存到“照片”。_
+
+![在Windows中从iPhone照片目录复制PNG驱动图片包](../iPhone通过USB给Windows电脑共享网络教程/copy-image-from-iphone.png)
+
+_图5：从照片目录复制到电脑，截图里的目录和文件名只作示例。_
+
+不要通过会压缩图片的聊天渠道中转，也不要编辑、裁剪或重新导出图片，否则附加数据可能被移除。
+
+**校验并提取全部文件**
+
+在离线电脑上打开PowerShell，进入图片包所在目录并计算校验值。例如，复制后的文件叫`IMG_9012.PNG`时执行：
+
+```powershell
+Get-FileHash .\IMG_9012.PNG -Algorithm SHA256
+```
+
+参考作者在原文中公布的图片包SHA-256为：
+
+```text
+f8b762abb1d5ec1fc03b4c24200180fd2808f2e48f55d10431a626ccb68bb82a
+```
+
+这个值只用于上述作者提供的图片包；自行制作时应对照自己记录的PNG校验值。文件被改名不会改变校验值，内容被改动才会改变。
+
+结果一致后，用7-Zip打开复制到电脑的PNG，把**全部内容**提取到本地文件夹。如果提示“无法作为压缩包打开”或校验不一致，先重新下载、保存并传输，不要继续安装。解压完成后应能找到一个MSI、两个INF，以及各自的全部配套文件。
+
+#### 6.安装设备支持组件和两套驱动
+
+驱动必须从解压后的本地目录安装，保持所有配套文件在原位置：
+
+1. 双击`AppleMobileDeviceSupport64.msi`，按向导完成安装，系统询问管理员权限时确认。
+2. 找到`AppleUsb.inf`，右键选择“安装”；Windows 11若未直接显示此选项，先点“显示更多选项”。
+3. 找到`netaapl64.inf`，同样右键选择“安装”。
+4. 安装完成后重启Windows，再连接iPhone。
+
+参考作者的图片包与本文自行制作的目录结构不同，按实际解压结果寻找这三个安装入口即可。**右键安装INF时，Windows仍会读取同目录的其他文件，不要把INF单独复制到桌面。**
+
+如果右键没有“安装”选项、提示不支持此安装方式，或希望从命令行安装两套驱动，以管理员身份打开PowerShell，进入本文示例中的`AppleDrivers`目录，执行：
 
 ```powershell
 pnputil /add-driver ".\AppleUSB\*.inf" /subdirs /install
 pnputil /add-driver ".\AppleTether\*.inf" /subdirs /install
 ```
 
-或者在确认`AppleDrivers`目录中只有这两套可信驱动后，一次扫描所有子目录：
+`pnputil`是Windows自带的驱动管理工具。这组命令可替代两个INF的右键安装操作，MSI仍需先安装。使用参考作者的图片包时，可以在**确认只包含这两套可信驱动**的解压目录里执行：
 
 ```powershell
 pnputil /add-driver ".\*.inf" /subdirs /install
 ```
 
-这些命令会以`.inf`作为安装入口，把包含配套文件的完整驱动包加入Windows驱动程序仓库；它们并不表示只需要保留或打包`.inf`文件。
+查看命令输出，确认驱动包成功添加；如果设备当前未连接，重新连接后再检查是否匹配加载。若提示签名或文件缺失，先核对完整解压和文件校验结果，不要关闭Windows的驱动签名验证。
 
-安装结束后重新启动Windows，再解锁iPhone、打开个人热点并重新连接数据线。
+#### 7.开启个人热点并确认联网
 
-### 六、极端情况：通过照片通道传输驱动包
+1. 在iPhone中打开蜂窝数据，先确认手机可以通过蜂窝网络访问网页。
+2. 进入“设置 → 个人热点”，打开“允许其他人加入”。
+3. 用数据线重新连接Windows，保持手机解锁，按提示信任电脑。
+4. 按`Win`+`R`，输入`ncpa.cpl`，检查是否新增描述包含`Apple Mobile Device Ethernet`的以太网连接。
+5. 在Windows浏览器中访问网页，确认电脑已经可以联网。
 
-如果手边只有iPhone和完全离线的Windows电脑，Windows又只能访问iPhone照片，可以参考原文章中的“图种”思路：把ZIP数据附加到一张PNG图片末尾，使文件既能作为图片保存和传输，又能被7-Zip等工具读取其中的压缩内容。
-
-这种方法只适合作为应急方案。照片应用、聊天软件或云服务如果重新编码图片，就可能删除附加在图片末尾的数据。只要存在U盘等常规传输方式，就应优先使用常规方式。
-
-#### 1. 制作图片附加包
-
-在一台可以联网的Windows电脑上准备：
-
-```text
-cover.png
-AppleDrivers.zip
-```
-
-在两个文件所在目录打开PowerShell，执行：
+需要进一步检查时，在PowerShell中运行：
 
 ```powershell
-cmd /c copy /b "cover.png"+"AppleDrivers.zip" "AppleDrivers.png"
+Get-NetAdapter | Where-Object InterfaceDescription -Like "*Apple*"
+ipconfig
 ```
 
-生成的`AppleDrivers.png`仍然可以作为图片打开，但使用7-Zip打开时，可以看到附加的ZIP内容。
+Apple网卡应处于已连接状态，并自动取得IPv4地址和网关；地址可能类似`172.20.10.x`，无需手动照填。能看到照片、安装命令显示成功，都不能单独替代最后的联网验证。
 
-制作后记录文件校验值：
-
-```powershell
-Get-FileHash .\AppleDrivers.png -Algorithm SHA256
-```
-
-#### 2. 保存到iPhone并传给Windows
-
-把`AppleDrivers.png`放到一个能够被iPhone Safari直接打开的HTTPS地址。在Safari中等待原图完整加载，然后长按图片并保存到“照片”。
-
-接着：
-
-1. 用数据线连接iPhone与离线Windows电脑；
-2. 解锁手机并点击“信任”；
-3. 在文件资源管理器中打开`Apple iPhone → Internal Storage`；
-4. 进入最新的照片目录，找到刚保存的PNG文件；
-5. 把文件复制到电脑本地。
-
-不要通过微信、QQ等可能压缩图片的渠道中转，也不要编辑、裁剪或重新保存图片。
-
-#### 3. 验证并解压
-
-在离线电脑上重新计算校验值：
-
-```powershell
-Get-FileHash .\AppleDrivers.png -Algorithm SHA256
-```
-
-只有当它和制作时的SHA-256值完全一致，才继续使用7-Zip打开并解压。校验不一致表示图片被重新编码、下载不完整或传输损坏，应停止安装并重新传输。
-
-解压后，按照上一节的步骤安装MSI和INF驱动。安装成功后，这个应急图片包即可删除。
-
-### 七、常见问题排查
-
-#### 1. Windows只能看到照片，没有Apple网卡
-
-这通常表示PTP功能正常，但Apple移动设备以太网驱动没有加载。依次检查：
-
-- 是否已经安装Apple设备应用、iTunes或离线驱动；
-- `AppleMobileDeviceSupport64.msi`是否安装成功；
-- 两个CAB是否分别提取了全部文件，而不是只保留`.inf`；
-- `AppleUsb.inf`和`netaapl64.inf`是否与各自的`.sys`、`.cat`等配套文件保持在原驱动目录中；
-- 两套完整驱动是否已经通过`.inf`安装入口加入Windows驱动程序仓库；
-- 设备管理器中的iPhone或Apple设备是否带黄色感叹号；
-- Windows是否已经在安装驱动后重启。
-
-#### 2. iPhone没有弹出“信任此电脑”
-
-先保持iPhone解锁，再拔插数据线并更换USB接口。仍然没有提示时，可以在iPhone中进入：
-
-```text
-设置 → 通用 → 传输或还原iPhone → 还原 → 还原位置与隐私
-```
-
-执行后重新连接会再次出现信任提示。这个操作会重置应用的位置与隐私授权，后续应用可能重新询问权限。
-
-#### 3. 设备管理器完全看不到iPhone
-
-重点检查物理连接：
-
-- 数据线是否支持数据传输；
-- USB接口是否接触不良；
-- 是否经过不稳定的扩展坞或前置USB接口；
-- iPhone充电口是否有灰尘；
-- 换一根线、换一个直连主板的USB接口是否恢复。
-
-先解决设备识别问题，再排查网络驱动。
-
-#### 4. Apple网卡存在，但显示“网络电缆被拔出”
-
-确认iPhone的“允许其他人加入”仍然开启，手机没有因重启或系统更新关闭热点。然后依次尝试：
-
-1. 关闭再打开个人热点；
-2. 拔插数据线；
-3. 让iPhone保持解锁一分钟；
-4. 在`ncpa.cpl`中禁用再启用Apple网卡；
-5. 重启iPhone和Windows。
-
-#### 5. 显示已连接，但电脑不能上网
-
-先在iPhone上关闭Wi-Fi，仅使用蜂窝数据打开网页。如果手机自身不能通过蜂窝网络访问互联网，Windows也无法通过它上网。
-
-如果手机能上网，再检查：
-
-- 套餐是否限制个人热点；
-- VPN、代理或安全软件是否拦截新网卡；
-- Apple网卡能否自动取得IP地址和DNS；
-- Windows是否正在优先使用另一个无效的网络连接；
-- 关闭再开启飞行模式后，蜂窝网络是否恢复。
-
-可以让Apple网卡重新获取地址：
-
-```powershell
-ipconfig /release
-ipconfig /renew
-ipconfig /flushdns
-```
-
-#### 6. “个人热点”选项不存在
-
-先确认SIM卡或eSIM已启用、蜂窝数据可用。如果个人热点入口仍然不存在，通常需要运营商开通热点能力或提供正确的APN配置。不要随意照搬其他运营商的APN参数，应联系当前运营商确认。
-
-#### 7. 连接后速度慢或频繁断开
-
-USB共享的上限仍然取决于蜂窝信号、套餐限速和运营商负载。可以尝试：
-
-- 把iPhone放到信号更好的位置；
-- 关闭低数据模式；
-- 暂停Windows Update、OneDrive和游戏平台下载；
-- 更换质量更好的短数据线；
-- 避免通过供电不足的USB集线器连接；
-- 手机过热时暂停大流量传输并帮助散热。
-
-### 八、流量与安全建议
+### 六、流量与安全建议
 
 把iPhone连接到Windows后，电脑会把它当作普通网络使用。为了避免后台程序快速消耗流量，可以在Windows的“设置 → 网络和Internet → 以太网”中，把Apple对应的网络设为“按流量计费的连接”。
 
@@ -367,19 +262,18 @@ USB共享的上限仍然取决于蜂窝信号、套餐限速和运营商负载�
 - 驱动只从Apple、Microsoft或可信开源项目的官方页面获取；
 - 安装离线包前核对数字签名和SHA-256校验值。
 
-### 九、总结
+### 七、总结
 
 iPhone通过USB给Windows共享网络，关键不是手动创建网络连接，而是让Windows正确加载Apple移动设备USB和以太网驱动。
 
-电脑可以联网时，安装Microsoft Store中的“Apple设备”应用，打开iPhone个人热点并信任电脑，通常就能自动建立连接。电脑完全离线时，可以在另一台设备上准备`AppleMobileDeviceSupport64.msi`、Apple USB驱动和移动设备以太网驱动，再通过U盘传入并离线安装。
+电脑完全离线时，按第五章准备完整的MSI和两套驱动，用U盘复制，或通过iPhone照片通道传入图片附加包。确认校验值一致、全部解压后，依次安装MSI、USB驱动和以太网驱动，再打开个人热点并验证联网。
 
-只有在没有任何常规传输介质、Windows又只能读取iPhone照片时，才建议使用图片附加压缩包的应急办法。无论采用哪种离线方式，都应先核对SHA-256校验值，再安装驱动。
-
-### 十、参考资料
+### 八、参考资料
 
 - [连接到iPhone或iPad的个人热点 - Apple支持](https://support.apple.com/zh-cn/111785)
 - [共享iPhone的互联网连接 - iPhone使用手册](https://support.apple.com/zh-cn/guide/iphone/iph45447ca6/ios)
 - [如果电脑无法识别iPhone或iPad - Apple支持](https://support.apple.com/zh-cn/108643)
 - [Apple Devices - Microsoft Store](https://apps.microsoft.com/detail/9np83lwlpz9k)
 - [Apple Mobile Drivers Installer - GitHub](https://github.com/NelloKudo/Apple-Mobile-Drivers-Installer)
+- [PnPUtil命令语法 - Microsoft Learn](https://learn.microsoft.com/zh-cn/windows-hardware/drivers/devtest/pnputil-command-syntax)
 - [iPhone给无网环境的Windows通过有线共享网络](https://blog.leao9203.cn/post/20251204234242/)
