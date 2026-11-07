@@ -20,15 +20,9 @@
 
 ## 项目简介
 
-本仓库保存 [QingchenJia Blog](https://qingchenjia.github.io/) 的文章、站点资源、Hexo 配置和自动部署流程。博客以可复现的实践教程为主，内容覆盖后端与前端开发、开发工具、服务器与中间件部署、个人建站以及 AI 编程工具等方向。
+本仓库保存 [QingchenJia Blog](https://qingchenjia.github.io/) 的文章、站点资源、Hexo 配置和自动部署流程。博客以实践教程为主，记录技术学习、开发实践与工具使用经验。
 
-截至 2026 年 7 月，仓库已收录 37 篇文章，主要分类包括：
-
-- **开发工具**：Git、Node.js、Conda、Zotero、PowerShell、Codex、Claude Code、OpenCode 等；
-- **后端开发**：Spring Boot、MyBatis-Plus、Redis、JWT、Knife4j、OpenFeign 等；
-- **服务部署**：Docker、Nginx、Nacos、RabbitMQ、CentOS、HTTPS 与内网穿透等；
-- **前端与可视化**：Vue 3、Element Plus、ECharts、CesiumJS 等；
-- **博客与效率实践**：Hexo 建站、GitHub Pages、AI 辅助写作与演示文稿制作等。
+文章分类包括开发工具、前端开发、后端开发、数据服务、服务部署、网络应用、系统维护、机器学习、学术写作、效率工具和博客建设。
 
 ## 项目特性
 
